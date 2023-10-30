@@ -49,7 +49,7 @@ class DiaIndicacioneController extends Controller
                 'hora'=>$request->hora,
                 'registro'=>Carbon::now(),
                 'tipo'=>$request->tipo,
-                'user_id'=>auth()->id(),
+                /* 'user_id'=>auth()->id(), */
             ]);
             return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$diaindicaciones->dia->kardex->id)->with('info','se puso la hora en '.$request->tipo);
         } catch (\Throwable $th) {

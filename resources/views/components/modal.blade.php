@@ -1,6 +1,6 @@
     <!-- Modal -->
     <div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}" aria-hidden="true">
-        @if (isset($parameter))
+        @if(isset($parameter))
             {!! Form::open(['route'=>[$route,$parameter],'method'=>$method]) !!}    
         @else
             {!! Form::open(['route'=>$route,'method'=>$method]) !!}

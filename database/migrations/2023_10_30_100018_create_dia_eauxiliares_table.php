@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('eauxiliare_id');
             $table->unsignedBigInteger('dia_id');
             $table->time('hora');
+            $table->string('estado')->default('solicitado');
             $table->unique(['hora','dia_id','eauxiliare_id']);
             $table->foreign('dia_id')->on('dias')->references('id')->onDelete('cascade');
             $table->foreign('eauxiliare_id')->on('eauxiliares')->references('id')->onDelete('cascade');

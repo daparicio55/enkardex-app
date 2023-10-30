@@ -40,11 +40,12 @@
                                     </button>
                                 {!! Form::close() !!}
                                 {{-- examens auxiales--}}
-                                {!! Form::open(['route'=>'licenciados.kardexes.indicaciones.index','method'=>'get','class'=>'d-inline']) !!}
-                                <input type="hidden" name="kardex" value="{{ $kardex->id }}">
-                                <button type="submit" class="btn btn-warning">
-                                    <i class="fas fa-pills"></i> 
-                                </button>
+                                {!! Form::open(['route'=>'licenciados.kardexes.eauxiliares.index','method'=>'get','class'=>'d-inline']) !!}
+                                    <input type="hidden" name="kardex" value="{{ $kardex->id }}">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-vials"></i> 
+                                    </button>
+                                {!! Form::close() !!}
                                 <x-Modal :id="'delete-'.$kardex->id" title="Confirmar Accion" type="danger" 
                                     icon="fas fa-trash-alt" route="licenciados.kardexes.destroy" :parameter="$kardex->id" method=null>
                                     <x-slot:body>
@@ -61,8 +62,4 @@
         </div>
     </div>
 </div>
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
 @stop

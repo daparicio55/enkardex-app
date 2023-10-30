@@ -25,18 +25,15 @@
         <i class="fas fa-plus-circle"></i> Nuevo Medicamento
     </button>
     {!! Form::close() !!}
+    
     <x-Modal id="addday" title="Agregar un dia de atencion" type="primary" icon="fas fa-calendar-day"
         route="licenciados.kardexes.dias.store" parameter=null method='POST'>
         <x-slot:body>
             <div class="row">
                 <input type="hidden" name="kardex" value="{{ $kardex->id }}">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-12">
                     {!! Form::label('fecha', 'Fecha', [null]) !!}
                     {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    {!! Form::label('hora', 'Hora', [null]) !!}
-                    {!! Form::time('hora', null, ['class' => 'form-control']) !!}
                 </div>
             </div>
         </x-slot:body>

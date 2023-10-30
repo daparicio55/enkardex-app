@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Ambiente;
 use App\Models\Doctore;
+use App\Models\Examene;
 use App\Models\Kardex;
 use App\Models\Medicamento;
 use App\Models\Paciente;
@@ -137,6 +138,16 @@ class DatabaseSeeder extends Seeder
             'paciente_id'=>$paciente1->id,
             'ambiente_id'=>$ambiente2->id,
             'diagnostico'=>'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo nisi veniam nam ipsam similique, dignissimos error inventore assumenda obcaecati libero culpa cum maiores ad qui, architecto voluptatem repudiandae corrupti alias'
+        ]);
+        //Agregamos Examenes
+        $examen1 = Examene::create([
+            'nombre'=>'Analisis de Sangre'
+        ]);
+        $examen2 = Examene::create([
+            'nombre'=>'Radiografia'
+        ]);
+        $examen3 = Examene::create([
+            'nombre'=>'Analisis de Orina'
         ]);
     }
 }
