@@ -31,6 +31,7 @@
         <x-slot:body>
             <div class="row">
                 <input type="hidden" name="kardex" value="{{ $kardex->id }}">
+                <input type="hidden" name="local" value="eauxiliares">
                 <div class="col-sm-12 col-md-12">
                     {!! Form::label('fecha', 'Fecha', [null]) !!}
                     {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
@@ -83,13 +84,6 @@
                                         @endphp
                                         @foreach ($exs as $ex)
                                             <td class="text-center p-0">
-                                                <span class="text-{{ horacolor($ex->hora)->color }}">{{ horacolor($ex->hora)->hora }}</span>
-                                                @if ($ex->estado == "realizado")
-                                                    <i class="far fa-check-circle text-info"></i>
-                                                @else
-                                                    <i class="fas fa-hourglass-half"></i>
-                                                @endif
-                                                <p class="m-0">
                                                     <x-Modal :id="'eliminar-'.$eauxiliare->id.'-'.$dia->id.'-'.str_replace(':','',$ex->hora)" type="danger" icon="fa fa-trash"
                                                         title="Confirmar Acción" route="licenciados.kardexes.deas.destroy" :parameter="$ex->id" method="DELETE">
                                                         <x-slot:body>
@@ -102,6 +96,13 @@
                                                             <p class="text-left">¿Desea marcar este examen como realizado o completado</p>
                                                         </x-slot:body>
                                                     </x-Modal>
+                                                <p class="m-0 p-0">
+                                                    <span class="text-{{ horacolor($ex->hora)->color }}">{{ horacolor($ex->hora)->hora }}</span>
+                                                    @if ($ex->estado == "realizado")
+                                                        <i class="far fa-check-circle text-info"></i>
+                                                    @else
+                                                        <i class="fas fa-hourglass-half"></i>
+                                                    @endif
                                                 </p>
                                             </td>    
                                         @endforeach

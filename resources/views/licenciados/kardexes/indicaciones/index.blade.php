@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'kardex')
+@section('title', 'Medicamentos')
 
 @section('content_header')
     <div class="row mb-1">
         <div class="col-sm-12 col-md-6">
-            <h1><b>INDICACIONES</b></h1>
+            <h1><b>Medicamentos - Indicaciones</b></h1>
         </div>
         <div class="col-sm-12 col-md-6 text-right bg-secondary">
             <h5 class="pt-2 pr-2"><b>#{{ ceros($kardex->numero) }} - {{ Str::upper($kardex->paciente->apellidos) }}, {{ Str::title($kardex->paciente->nombres) }}</b></h5>
@@ -31,6 +31,7 @@
         <x-slot:body>
             <div class="row">
                 <input type="hidden" name="kardex" value="{{ $kardex->id }}">
+                <input type="hidden" name="local" value="indicaciones">
                 <div class="col-sm-12 col-md-12">
                     {!! Form::label('fecha', 'Fecha', [null]) !!}
                     {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
@@ -95,103 +96,105 @@
                                     @php
                                         $hora = null;
                                     @endphp
-                                    @foreach ($kardex->dias as $dia)
-                                        <tr>
-                                            <td style="width: 110px" class="text-center p-0 m-0 h5"><b>{{ date('d-m-Y', strtotime($dia->fecha)) }}</b></td>
-                                            @if ($loop->first)
-                                                @php
-                                                    $horainicio = Carbon\Carbon::parse($dia->fecha . ' ' . $kardex->hingreso);
-                                                    $horasuma = Carbon\Carbon::parse($dia->fecha . ' ' . $kardex->hingreso);
-                                                @endphp
-                                                @while ($horasuma->isSameDay($horainicio))
-                                                    <td class="text-center text-{{ horacolor($horasuma)->color }} p-0">
-                                                        <x-Modal :id="'noaplica-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="secondary" 
-                                                            icon="fas fa-ban" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
-                                                            <x-slot:body>
-                                                                <input type="hidden" name="dia_id" value="{{ $dia->id }}">
-                                                                <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
-                                                                <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
-                                                                <input type="hidden" name="tipo" value="no aplica">
-                                                                <p class="text-left text-dark">Esto marcara como <span><b>NO APLICA</b></span>, ¿Desea continuar?...</p>
-                                                            </x-slot>
-                                                        </x-Modal>
-                                                        <x-Modal :id="'done-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="info" 
-                                                            icon="far fa-check-circle" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
-                                                            <x-slot:body>
-                                                                <input type="hidden" name="dia_id" value="{{ $dia->id }}">
-                                                                <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
-                                                                <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
-                                                                <input type="hidden" name="tipo" value="aplicado">
-                                                                <p class="text-left text-dark">Esto marcara <b>SUMINISTRADA</b>, ¿Desea continuar?...</p>
-                                                            </x-slot>
-                                                        </x-Modal>
-                                                        {{-- ponemos formato para el texto --}}
-                                                        <p>
-                                                            {{ horacolor($horasuma)->hora }}
-                                                            @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'no aplica')
-                                                                <small class="text-secondary"><i class="fas fa-ban"></i></small>
-                                                            @endif
-                                                            @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'aplicado')
-                                                                <small class="text-info"><i class="far fa-check-circle"></i></small>
-                                                            @endif
-                                                            {{-- @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == null)
-                                                                {{ horacolor($horasuma)->hora }}
-                                                            @endif --}}
-                                                        </p>
-                                                        
-                                                    </td>
+                                    @isset($indicacione->frecuencia)
+                                        @foreach ($kardex->dias as $dia)
+                                            <tr>
+                                                <td style="width: 110px" class="text-center p-0 m-0 h5"><b>{{ date('d-m-Y', strtotime($dia->fecha)) }}</b></td>
+                                                @if ($loop->first)
                                                     @php
-                                                        $horasuma->addHours($indicacione->frecuencia);
-                                                        $hora = $horasuma;
+                                                        $horainicio = Carbon\Carbon::parse($dia->fecha . ' ' . $kardex->hingreso);
+                                                        $horasuma = Carbon\Carbon::parse($dia->fecha . ' ' . $kardex->hingreso);
                                                     @endphp
-                                                @endwhile
-                                            @else
-                                                @php
-                                                    $horasuma = $hora->copy();
-                                                @endphp
-                                                @while ($horasuma->isSameDay($hora))
+                                                    @while ($horasuma->isSameDay($horainicio))
+                                                        <td class="text-center text-{{ horacolor($horasuma)->color }} p-0">
+                                                            <x-Modal :id="'noaplica-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="secondary" 
+                                                                icon="fas fa-ban" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
+                                                                <x-slot:body>
+                                                                    <input type="hidden" name="dia_id" value="{{ $dia->id }}">
+                                                                    <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
+                                                                    <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
+                                                                    <input type="hidden" name="tipo" value="no aplica">
+                                                                    <p class="text-left text-dark">Esto marcara como <span><b>NO APLICA</b></span>, ¿Desea continuar?...</p>
+                                                                </x-slot>
+                                                            </x-Modal>
+                                                            <x-Modal :id="'done-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="info" 
+                                                                icon="far fa-check-circle" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
+                                                                <x-slot:body>
+                                                                    <input type="hidden" name="dia_id" value="{{ $dia->id }}">
+                                                                    <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
+                                                                    <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
+                                                                    <input type="hidden" name="tipo" value="aplicado">
+                                                                    <p class="text-left text-dark">Esto marcara <b>SUMINISTRADA</b>, ¿Desea continuar?...</p>
+                                                                </x-slot>
+                                                            </x-Modal>
+                                                            {{-- ponemos formato para el texto --}}
+                                                            <p>
+                                                                {{ horacolor($horasuma)->hora }}
+                                                                @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'no aplica')
+                                                                    <small class="text-secondary"><i class="fas fa-ban"></i></small>
+                                                                @endif
+                                                                @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'aplicado')
+                                                                    <small class="text-info"><i class="far fa-check-circle"></i></small>
+                                                                @endif
+                                                                {{-- @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == null)
+                                                                    {{ horacolor($horasuma)->hora }}
+                                                                @endif --}}
+                                                            </p>
+                                                            
+                                                        </td>
+                                                        @php
+                                                            $horasuma->addHours($indicacione->frecuencia);
+                                                            $hora = $horasuma;
+                                                        @endphp
+                                                    @endwhile
+                                                @else
+                                                    @php
+                                                        $horasuma = $hora->copy();
+                                                    @endphp
+                                                    @while ($horasuma->isSameDay($hora))
 
-                                                    <td class="text-center text-{{ horacolor($horasuma)->color }} p-0">
-                                                        <x-Modal :id="'noaplica-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="secondary" 
-                                                            icon="fas fa-ban" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
-                                                            <x-slot:body>
-                                                                <input type="hidden" name="dia_id" value="{{ $dia->id }}">
-                                                                <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
-                                                                <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
-                                                                <input type="hidden" name="tipo" value="no aplica">
-                                                                <p class="text-left text-dark">Esto marcara como <span><b>NO APLICA</b></span>, ¿Desea continuar?...</p>
-                                                            </x-slot>
-                                                        </x-Modal>
-                                                        <x-Modal :id="'done-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="info" 
-                                                            icon="far fa-check-circle" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
-                                                            <x-slot:body>
-                                                                <input type="hidden" name="dia_id" value="{{ $dia->id }}">
-                                                                <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
-                                                                <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
-                                                                <input type="hidden" name="tipo" value="aplicado">
-                                                                <p class="text-left text-dark">Esto marcara <b>SUMINISTRADA</b>, ¿Desea continuar?...</p>
-                                                            </x-slot>
-                                                        </x-Modal>
-                                                        <p class="mb-0">
-                                                            {{ horacolor($horasuma)->hora }}
-                                                            @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'no aplica')
-                                                                <small class="text-secondary"><i class="fas fa-ban"></i></small>
-                                                            @endif
-                                                            @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'aplicado')
-                                                                <small class="text-info"><i class="far fa-check-circle"></i></small>
-                                                            @endif
-                                                            {{-- @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == null)
+                                                        <td class="text-center text-{{ horacolor($horasuma)->color }} p-0">
+                                                            <x-Modal :id="'noaplica-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="secondary" 
+                                                                icon="fas fa-ban" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
+                                                                <x-slot:body>
+                                                                    <input type="hidden" name="dia_id" value="{{ $dia->id }}">
+                                                                    <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
+                                                                    <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
+                                                                    <input type="hidden" name="tipo" value="no aplica">
+                                                                    <p class="text-left text-dark">Esto marcara como <span><b>NO APLICA</b></span>, ¿Desea continuar?...</p>
+                                                                </x-slot>
+                                                            </x-Modal>
+                                                            <x-Modal :id="'done-'.$indicacione->id.'-'.$dia->id.'-'.str_replace(':','',horacolor($horasuma)->hora)" title="Confirmar acción" type="info" 
+                                                                icon="far fa-check-circle" route="licenciados.kardexes.dins.store" :parameter="$kardex->id" method=null>
+                                                                <x-slot:body>
+                                                                    <input type="hidden" name="dia_id" value="{{ $dia->id }}">
+                                                                    <input type="hidden" name="indicacione_id" value="{{ $indicacione->id }}">
+                                                                    <input type="hidden" name="hora" value="{{ horacolor($horasuma)->hora }}">
+                                                                    <input type="hidden" name="tipo" value="aplicado">
+                                                                    <p class="text-left text-dark">Esto marcara <b>SUMINISTRADA</b>, ¿Desea continuar?...</p>
+                                                                </x-slot>
+                                                            </x-Modal>
+                                                            <p class="mb-0">
                                                                 {{ horacolor($horasuma)->hora }}
-                                                            @endif --}}
-                                                        </p>
-                                                    </td>
-                                                    @php
-                                                        $horasuma->addHours($indicacione->frecuencia);
-                                                    @endphp
-                                                @endwhile
-                                            @endif
-                                        </tr>
-                                    @endforeach
+                                                                @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'no aplica')
+                                                                    <small class="text-secondary"><i class="fas fa-ban"></i></small>
+                                                                @endif
+                                                                @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == 'aplicado')
+                                                                    <small class="text-info"><i class="far fa-check-circle"></i></small>
+                                                                @endif
+                                                                {{-- @if (estadohora($dia->id,$indicacione->id,horacolor($horasuma)->hora) == null)
+                                                                    {{ horacolor($horasuma)->hora }}
+                                                                @endif --}}
+                                                            </p>
+                                                        </td>
+                                                        @php
+                                                            $horasuma->addHours($indicacione->frecuencia);
+                                                        @endphp
+                                                    @endwhile
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                    @endisset
                                 </tbody>
                             </table>
                         </div>

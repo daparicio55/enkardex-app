@@ -38,11 +38,11 @@ class DiaController extends Controller
             //$dia->hora = $request->hora;
             $dia->kardex_id = $request->kardex;
             $dia->save();
-            return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$request->kardex)->with('info','se agrego correctamente el día');
+            return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('info','se agrego correctamente el día');
         } catch (\Throwable $th) {
             //throw $th;
             return $th->getMessage();
-            return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$request->kardex)->with('erro','no se pudo agregar el día');
+            return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('erro','no se pudo agregar el día');
         }
         
     }
