@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Ambiente;
+use App\Models\Dieta;
 use App\Models\Doctore;
 use App\Models\Examene;
 use App\Models\Kardex;
@@ -148,6 +149,54 @@ class DatabaseSeeder extends Seeder
         ]);
         $examen3 = Examene::create([
             'nombre'=>'Analisis de Orina'
+        ]);
+        Dieta::create([
+            'nombre'=>'NPO ( nada por via oral)'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Normal'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Liquida '
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Licuada '
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Blanda'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Con Modificacion de la textura'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hiperproteica'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipercelulosica'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Sin Residuos'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipocalorica'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipoglucida'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hiposodica'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipoproteica'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipograsa'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipoalergenica'
+        ]);
+        Dieta::create([
+            'nombre'=>'Dieta Hipopurinica'
         ]);
     }
 }
