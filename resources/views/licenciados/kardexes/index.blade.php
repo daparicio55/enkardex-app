@@ -36,15 +36,23 @@
                                 {!! Form::open(['route'=>'licenciados.kardexes.indicaciones.index','method'=>'get','class'=>'d-inline']) !!}
                                     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
                                     <button type="submit" class="btn btn-warning">
-                                        <i class="fas fa-list-ol"></i> Indicaciones
+                                        <i class="fas fa-pills"></i> 
                                     </button>
                                 {!! Form::close() !!}
+                                {{-- examens auxiales--}}
+                                {!! Form::open(['route'=>'licenciados.kardexes.indicaciones.index','method'=>'get','class'=>'d-inline']) !!}
+                                <input type="hidden" name="kardex" value="{{ $kardex->id }}">
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="fas fa-pills"></i> 
+                                </button>
                                 <x-Modal :id="'delete-'.$kardex->id" title="Confirmar Accion" type="danger" 
-                                    icon="fas fa-trash-alt" route="licenciados.kardexes.destroy" :parameter="$kardex->id">
+                                    icon="fas fa-trash-alt" route="licenciados.kardexes.destroy" :parameter="$kardex->id" method=null>
                                     <x-slot:body>
                                         <p>¿Esta seguro que desea eliminar este Kardex? Recuerde que tambien eliminara todos los detalles relacionados a esta</p>
                                     </x-slot>
                                 </x-Modal>
+                                {{-- <i class="fas fa-vials"></i> --}}
+
                             </td>
                         </tr>
                     @endforeach

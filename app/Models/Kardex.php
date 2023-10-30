@@ -17,4 +17,7 @@ class Kardex extends Model
     public function indicaciones(){
         return $this->hasMany(Indicacione::class);
     }
+    public function dias(){
+        return $this->hasMany(Dia::class);
+    }
 }

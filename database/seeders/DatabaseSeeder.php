@@ -128,7 +128,9 @@ class DatabaseSeeder extends Seeder
         $kardex1 = Kardex::create([
             'numero'=>1,
             'fingreso'=>Carbon::now(),
-            'hingreso'=>Carbon::now(),
+            /* 'hingreso'=>Carbon::now(), */
+            /* 'fingreso'=>date('Y-m-d',strtotime(Carbon::now())), */
+            'hingreso'=>date('H:i:00',strtotime(Carbon::now())),
             'doctore_id'=>$doctore1->id,
             'enfermero_id'=>$licenciado1->id,
             'servicio_id'=>$servicio1->id,

@@ -211,7 +211,7 @@ return [
     */
 
     'sidebar_mini' => 'lg',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -310,27 +310,33 @@ return [
         ['header' => 'ADMINISTRADOR'],
         [
             'text'=>'Medicamentos',
+            'icon'=>'fas fa-capsules',
             'url'=>'#'
         ],
         [
             'text'=>'Unidades',
+            'icon'=>'fas fa-pencil-ruler',
             'url'=>'#'
         ],
         [
             'text'=>'Servicios',
+            'icon'=>'fas fa-hand-holding-medical',
             'url'=>'#'
         ],
         ['header' => 'LICENCIADOS'],
         [
             'text'=>'Doctores',
+            'icon'=>'fas fa-user-md',
             'url'=>'#'
         ],
         [
             'text'=>'Pacientes',
+            'icon'=>'fas fa-user-injured',
             'url'=>'#'
         ],
         [
             'text'=>'Kardex',
+            'icon'=>'fas fa-list-ul',
             'route'=>'licenciados.kardexes.index'
         ],
         //finmenus
@@ -510,6 +516,26 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/datatables-plugins/buttons/css/buttons.bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'TempusDominusBs4' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/moment/moment.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
                 ],
             ],
         ],

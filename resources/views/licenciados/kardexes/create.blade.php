@@ -130,6 +130,42 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
+        <x-adminlte-card title="Fechas de Ingreso y días de Atencion" theme="danger" icon="fas fa-calendar-alt" collapsible>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <x-inputdate name="fingreso" id="fingreso" label="F. Ingreso">
+                        <x-slot name="pre">
+                            <span class="input-group-text bg-gradient-info">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                        </x-slot>
+                    </x-inputdate>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <x-inputtime name="hingreso" id="hingreso" label="H. Ingreso">
+                        <x-slot name="pre">
+                            <span class="input-group-text bg-gradient-info">
+                                <i class="fas fa-calendar-alt"></i>
+                            </span>
+                        </x-slot>
+                    </x-inputdate>
+                    {{-- @php
+                        $config02 = ['format' => 'LT'];
+                    @endphp
+                    <x-adminlte-input-date name="hingreso" label="H Ingreso" :config="$config02" placeholder="Choose a time...">
+                        <x-slot name="prependSlot">
+                            <div class="input-group-text bg-gradient-info">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </x-slot>
+                    </x-adminlte-input-date> --}}
+                </div>
+            </div>
+        </x-adminlte-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
         <button type="submit" class="btn btn-primary">
             <i class="fas fa-save"></i> Guardar
         </button>

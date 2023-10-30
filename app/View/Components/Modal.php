@@ -18,6 +18,7 @@ class Modal extends Component
         public string $type,
         public $route,
         public $parameter,
+        public $method,
     )
     {
         //

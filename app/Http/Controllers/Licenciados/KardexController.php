@@ -23,10 +23,11 @@ class KardexController extends Controller
         try {
             //code...
             $kardexes = Kardex::get();
+            return view('licenciados.kardexes.index',compact('kardexes'));
         } catch (\Throwable $th) {
             //throw $th;
+            dd($th->getMessage());
         }
-        return view('licenciados.kardexes.index',compact('kardexes'));
     }
 
     /**

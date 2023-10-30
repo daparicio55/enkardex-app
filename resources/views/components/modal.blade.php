@@ -1,6 +1,10 @@
     <!-- Modal -->
     <div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}" aria-hidden="true">
-        {!! Form::open(['route'=>[$route,$parameter],'method'=>'delete']) !!}
+        @if (isset($parameter))
+            {!! Form::open(['route'=>[$route,$parameter],'method'=>$method]) !!}    
+        @else
+            {!! Form::open(['route'=>$route,'method'=>$method]) !!}
+        @endif
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-{{ $type }}">
@@ -27,6 +31,9 @@
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-{{ $type }}" data-toggle="modal" data-target="#{{ $id }}">
         <i class="{{ $icon }}"></i>
+        @if (isset($textbutton))
+            {{ $textbutton }}    
+        @endif
     </button>
 
 
