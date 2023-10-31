@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dieta;
+use App\Models\Kardex;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class DietaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        try {
+            $dietas = Dieta::orderBy('nombre','asc')
+            ->get();
+            $kardex = Kardex::findOrFail($request->kardex);
+            $dietas = Dieta::orderBy('nombre','asc')->get();
+            return view('licenciados.kardexes.dietas.index',compact('kardex','dietas'));
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th->getMessage());
+            return Redirect::route('licenciados.kardexes.dietas.index')->with('error','nose puede mostrar los examenes');
+        }
     }
 
     /**

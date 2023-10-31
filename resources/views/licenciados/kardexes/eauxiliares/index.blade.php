@@ -111,13 +111,7 @@
                             </tbody>
                         </table>
                     </div>
-
-
-
-
-
                 </x-adminlte-card>
-                
             @endforeach
         </div>
     </div>

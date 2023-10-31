@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Route;
     ->names('licenciados.kardexes.deas');
     Route::resource('/licenciados/kardexes/ddietas',DiaDietaController::class)
     ->names('licenciados.kardexes.ddietas');
+    
     //PARTES DEL KAXDES
     Route::resource('/licenciados/kardexes/indicaciones',IndicacioneController::class)
     ->names('licenciados.kardexes.indicaciones');

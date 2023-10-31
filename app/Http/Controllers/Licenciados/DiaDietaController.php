@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Licenciados;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dia;
+use App\Models\DiaDieta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class DiaDietaController extends Controller
 {
@@ -13,6 +16,7 @@ class DiaDietaController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
@@ -28,7 +32,23 @@ class DiaDietaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            //code...
+            $dia = Dia::findOrFail($request->dia);
+            $ddieta = new DiaDieta();
+            for ($i=0; $i < count($request->dietas); $i++) { 
+                # code...
+                $ddieta->dia_id = $request->dia;
+                $ddieta->dieta_id = $request->dietas[$i];
+                $ddieta->save();
+            }
+            return Redirect::to('/licenciados/kardexes/dietas?kardex='.$dia->kardex->id)
+            ->with('info','se agregaron las dietas correctamente');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return Redirect::route('licenciados.kardexes.index')
+            ->with('error','no puede agregar las dietas');
+        }
     }
 
     /**
@@ -61,5 +81,17 @@ class DiaDietaController extends Controller
     public function destroy(string $id)
     {
         //
+        try {
+            //code...
+            $ddieta = DiaDieta::findOrFail($id);
+            $kardex = $ddieta->dia->kardex_id;
+            $ddieta->delete();
+            return Redirect::to('/licenciados/kardexes/dietas?kardex='.$kardex)
+            ->with('info','se agregaron las dietas correctamente');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return Redirect::route('licenciados.kardexes.index')
+            ->with('error','no puede agregar las dietas');
+        }
     }
 }

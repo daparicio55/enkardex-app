@@ -32,7 +32,7 @@
                             <td>{{ $kardex->ambiente->nombre }}</td>
                             <td>{{ date('d-m-Y',strtotime($kardex->fingreso)) }}</td>
                             <td>{{ date('h:i:s A',strtotime($kardex->hingreso)) }}</td>
-                            <td style="width: 200px">
+                            <td style="width: 230px">
                                 {!! Form::open(['route'=>'licenciados.kardexes.indicaciones.index','method'=>'get','class'=>'d-inline']) !!}
                                     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
                                     <button type="submit" class="btn btn-warning">
@@ -43,7 +43,13 @@
                                 {!! Form::open(['route'=>'licenciados.kardexes.eauxiliares.index','method'=>'get','class'=>'d-inline']) !!}
                                     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
                                     <button type="submit" class="btn btn-success">
-                                        <i class="fas fa-vials"></i> 
+                                        <i class="fas fa-vials"></i>
+                                    </button>
+                                {!! Form::close() !!}
+                                {!! Form::open(['route'=>'licenciados.kardexes.dietas.index','method'=>'get','class'=>'d-inline']) !!}
+                                    <input type="hidden" name="kardex" value="{{ $kardex->id }}">
+                                    <button type="submit" class="btn btn-info">
+                                        <i class="fas fa-utensils"></i>
                                     </button>
                                 {!! Form::close() !!}
                                 <x-Modal :id="'delete-'.$kardex->id" title="Confirmar Accion" type="danger" 
