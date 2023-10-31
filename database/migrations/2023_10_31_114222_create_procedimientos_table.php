@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('procedimientos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre')->unique();
+            $table->string('descripcion')->nullable();
             $table->timestamps();
         });
     }
