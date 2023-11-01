@@ -9,6 +9,8 @@ use App\Http\Controllers\Licenciados\DiaController;
 use App\Http\Controllers\Licenciados\DiaDietaController;
 use App\Http\Controllers\Licenciados\DiaEauxiliareController;
 use App\Http\Controllers\Licenciados\DiaIndicacioneController;
+use App\Http\Controllers\Licenciados\DiaProcediminetoController;
+use App\Http\Controllers\ProcedimientoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +35,9 @@ use Illuminate\Support\Facades\Route;
     ->names('licenciados.kardexes.deas');
     Route::resource('/licenciados/kardexes/ddietas',DiaDietaController::class)
     ->names('licenciados.kardexes.ddietas');
-    
+    Route::resource('/licenciados/kardexes/dprocedimientos',DiaProcediminetoController::class)
+    ->names('licenciados.kardexes.dprocedimientos');
+
     //PARTES DEL KAXDES
     Route::resource('/licenciados/kardexes/indicaciones',IndicacioneController::class)
     ->names('licenciados.kardexes.indicaciones');
@@ -41,6 +45,9 @@ use Illuminate\Support\Facades\Route;
     ->names('licenciados.kardexes.eauxiliares');
     Route::resource('/licenciados/kardexes/dietas',DietaController::class)
     ->names('licenciados.kardexes.dietas');
+    Route::resource('/licenciados/kardexes/procedimientos',ProcedimientoController::class)
+    ->names('licenciados.kardexes.procedimientos');
+
     //--->
     Route::resource('/licenciados/kardexes/dias',DiaController::class)
     ->names('licenciados.kardexes.dias');

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('codigo');
             $table->string('denominacion');
-            $table->string('especificaciones')->nullable();
+            $table->longText('especificaciones')->nullable();
             $table->string('unidad');
             $table->string('restriccion')->nullable();
             $table->longText('indicaciones')->nullable();

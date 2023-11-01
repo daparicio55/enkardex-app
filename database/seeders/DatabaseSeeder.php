@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
             'email'=>'manuel@gmail.com',
             'password'=>bcrypt('1234'),
         ]);
-        $medicamento1 = Medicamento::create([
+        /* $medicamento1 = Medicamento::create([
             'codigo'=>'010350104',
             'denominacion'=>'TRASTUZUMAB',
             'especificaciones'=>'21mg/mL x 20mL después de la reconstitución (con diluyente)',
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
             'unidad'=>'AM',
             'restriccion'=>'1,3,8',
             'indicaciones'=>'Para el tratamiento de paciente con cáncer de mama HER-2 positivo en adyuvancia, como una alternativa a Trastuzumab 420mg inyectable',
-        ]);
+        ]); */
         //UNIDADES
         $unidade1 = Unidade::create([
             'nombre'=>'mg.'
@@ -150,53 +150,9 @@ class DatabaseSeeder extends Seeder
         $examen3 = Examene::create([
             'nombre'=>'Analisis de Orina'
         ]);
-        Dieta::create([
-            'nombre'=>'NPO ( nada por via oral)'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Normal'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Liquida '
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Licuada '
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Blanda'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Con Modificacion de la textura'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hiperproteica'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipercelulosica'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Sin Residuos'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipocalorica'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipoglucida'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hiposodica'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipoproteica'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipograsa'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipoalergenica'
-        ]);
-        Dieta::create([
-            'nombre'=>'Dieta Hipopurinica'
-        ]);
+        $this->call(ProcedimientoSeed::class);
+        $this->call(ViaSeed::class);
+        $this->call(DietaSeed::class);
+        $this->call(MedicamentoSeed::class);
     }
 }

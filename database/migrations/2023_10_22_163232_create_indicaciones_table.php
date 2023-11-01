@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('indicaciones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('medicamento_id');
             $table->string('dosis')->nullable();
-            $table->string('via')->nullable();
             $table->string('frecuencia')->nullable();
+            $table->unsignedBigInteger('medicamento_id');
+            $table->unsignedBigInteger('via_id')->nullable();
             $table->unsignedBigInteger('kardex_id');
             $table->foreign('medicamento_id')->on('medicamentos')->references('id');
             $table->foreign('kardex_id')->on('kardexes')->references('id');

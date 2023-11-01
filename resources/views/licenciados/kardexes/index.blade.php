@@ -52,14 +52,17 @@
                                         <i class="fas fa-utensils"></i>
                                     </button>
                                 {!! Form::close() !!}
+                                {!! Form::open(['route'=>'licenciados.kardexes.dietas.index','method'=>'get','class'=>'d-inline']) !!}
+                                    <button type="submit" class="btn btn-secondary">
+                                        <i class="fas fa-procedures"></i>
+                                    </button>
+                                {!! Form::close() !!}
                                 <x-Modal :id="'delete-'.$kardex->id" title="Confirmar Accion" type="danger" 
                                     icon="fas fa-trash-alt" route="licenciados.kardexes.destroy" :parameter="$kardex->id" method=null>
                                     <x-slot:body>
                                         <p>¿Esta seguro que desea eliminar este Kardex? Recuerde que tambien eliminara todos los detalles relacionados a esta</p>
                                     </x-slot>
                                 </x-Modal>
-                                {{-- <i class="fas fa-vials"></i> --}}
-
                             </td>
                         </tr>
                     @endforeach
