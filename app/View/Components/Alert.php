@@ -2,12 +2,11 @@
 
 namespace App\View\Components;
 
-use App\Models\Via as ModelsVia;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Via extends Component
+class Alert extends Component
 {
     /**
      * Create a new component instance.
@@ -22,7 +21,6 @@ class Via extends Component
      */
     public function render(): View|Closure|string
     {
-        $vias = ModelsVia::orderBy('nombre','asc')->pluck('nombre','id')->toArray();
-        return view('components.via',compact('vias'));
+        return view('components.alert');
     }
 }

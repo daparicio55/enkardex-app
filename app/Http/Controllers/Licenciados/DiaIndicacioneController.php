@@ -15,6 +15,11 @@ class DiaIndicacioneController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        /* $this->middleware(['auth:sanctum',config('jetstream.auth_session'),'verified']); */
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
@@ -54,7 +59,6 @@ class DiaIndicacioneController extends Controller
             return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$diaindicaciones->dia->kardex->id)->with('info','se puso la hora en '.$request->tipo);
         } catch (\Throwable $th) {
             //throw $th;
-            dd($th->getMessage());
             return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$diaindicaciones->dia->kardex->id)->with('error','nose pudo guardar los datos correctamente');
         }
     }

@@ -12,6 +12,11 @@ class DiaController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        /* $this->middleware(['auth:sanctum',config('jetstream.auth_session'),'verified']); */
+        $this->middleware('auth');
+    }
     public function index()
     {
         //
@@ -41,8 +46,7 @@ class DiaController extends Controller
             return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('info','se agrego correctamente el día');
         } catch (\Throwable $th) {
             //throw $th;
-            return $th->getMessage();
-            return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('erro','no se pudo agregar el día');
+            return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('error','no se agregó agregar el día');
         }
         
     }

@@ -1,5 +1,5 @@
 <!-- Simplicity is an acquired taste. - Katharine Gerould -->
-<label for="{{ $name }}">{{ $label }}</label>
+<label for="{{ $name }}" class="{{ $class }}">{{ $label }}</label>
 <div class="input-group">
     @isset($pre)
         <div class="input-group-prepend">

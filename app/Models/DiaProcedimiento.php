@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DiaProcedimiento extends Model
 {
     use HasFactory;
+    public function procedimiento(){
+        return $this->belongsTo(Procedimiento::class);
+    }
 }

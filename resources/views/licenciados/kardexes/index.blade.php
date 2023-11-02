@@ -20,19 +20,20 @@
                         <th>Paciente</th>
                         <th style="width: 50px">Amb.</th>
                         <th style="width: 100px">F. Ingreso</th>
-                        <th style="width: 120px">H. Ingreso</th>
-                        <th>Acciones</th>
+                        <th style="width: 120px">H. Ingreso</th>                        
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($kardexes as $kardex)
                         <tr>
-                            <td>{{ $kardex->numero }}</td>
+                            <td>{{ ceros($kardex->numero) }}</td>
                             <td>{{ Str::upper($kardex->paciente->apellidos) }}, {{ Str::title($kardex->paciente->nombres) }}</td>
                             <td>{{ $kardex->ambiente->nombre }}</td>
                             <td>{{ date('d-m-Y',strtotime($kardex->fingreso)) }}</td>
                             <td>{{ date('h:i:s A',strtotime($kardex->hingreso)) }}</td>
-                            <td style="width: 230px">
+                        </tr>
+                        <tr>
+                            <td colspan="6">
                                 {!! Form::open(['route'=>'licenciados.kardexes.indicaciones.index','method'=>'get','class'=>'d-inline']) !!}
                                     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
                                     <button type="submit" class="btn btn-warning">
@@ -52,7 +53,8 @@
                                         <i class="fas fa-utensils"></i>
                                     </button>
                                 {!! Form::close() !!}
-                                {!! Form::open(['route'=>'licenciados.kardexes.dietas.index','method'=>'get','class'=>'d-inline']) !!}
+                                {!! Form::open(['route'=>'licenciados.kardexes.procedimientos.index','method'=>'get','class'=>'d-inline']) !!}
+                                    <input type="hidden" name="kardex" value="{{ $kardex->id }}">
                                     <button type="submit" class="btn btn-secondary">
                                         <i class="fas fa-procedures"></i>
                                     </button>

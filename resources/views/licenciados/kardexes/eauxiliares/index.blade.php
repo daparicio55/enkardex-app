@@ -50,7 +50,7 @@
             @foreach ($eauxiliares as $eauxiliare)
                 <x-adminlte-card
                     title="{{ $eauxiliare->examene->nombre }}"
-                    theme="info" icon="fas fa-vials" collapsible>
+                    theme="info" icon="fas fa-vials" collapsible="collapsed">
                     {{-- BOTON ELIMINAR --}}
                     <x-slot name="toolsSlot">
                         <x-Modal :id="'delete-' . $eauxiliare->id" title="Confirmar Accion" type="danger" icon="fas fa-trash-alt"

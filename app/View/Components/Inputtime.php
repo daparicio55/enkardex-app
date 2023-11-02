@@ -15,17 +15,20 @@ class Inputtime extends Component
     public $name;
     public $value;
     public $label;
+    public $class;
     public function __construct(
         $id = "xtime",
         $name = "xtime",
         $label = 'Fecha',
         $value = null,
+        $class = 'text-dark',
     )
     {
         $this->id = $id;
         $this->name = $name;
         $this->label = $label;
         $this->value = $value;
+        $this->class = $class;
     }
 
     /**

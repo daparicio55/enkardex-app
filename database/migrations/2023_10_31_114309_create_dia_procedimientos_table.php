@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('dia_id');
             $table->unique(['procedimiento_id','dia_id']);
             $table->foreign('procedimiento_id')->on('procedimientos')->references('id');
-            $table->foreign('dia_id')->on('procedimientos')->references('id');
+            $table->foreign('dia_id')->on('dias')->references('id');
             $table->timestamps();
         });
     }

@@ -14,6 +14,10 @@ class IndicacioneController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
         //
@@ -97,7 +101,7 @@ class IndicacioneController extends Controller
             //code...
             $indicacione = Indicacione::findOrFail($id);
             $indicacione->dosis = $request->dosis;
-            $indicacione->via = $request->via;
+            $indicacione->via_id = $request->via_id;
             $indicacione->frecuencia = $request->frecuencia;
             $indicacione->update();
             return Redirect::to(asset('/licenciados/kardexes/indicaciones?kardex=').$indicacione->kardex_id)->with('info','se guardo las indicaciones correctamente');
