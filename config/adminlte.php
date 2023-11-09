@@ -642,6 +642,11 @@ return [
                     'asset' => true,
                     'location' => '/assets/js/main.js',
                 ],
+                [
+                    'type'=>'js',
+                    'asset'=>true,
+                    'location'=>'/build/assets/app-c75e0372.js'
+                ]
             ],
         ],
     ],

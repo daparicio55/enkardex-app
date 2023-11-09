@@ -16,7 +16,10 @@ return new class extends Migration
             $table->time('hora');
             $table->unsignedBigInteger('procedimiento_id');
             $table->unsignedBigInteger('dia_id');
-            $table->unique(['procedimiento_id','dia_id']);
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unique(['procedimiento_id','dia_id','hora']);
+            $table->dateTime('registro')->nullable();
+            $table->foreign('user_id')->on('users')->references('id');
             $table->foreign('procedimiento_id')->on('procedimientos')->references('id');
             $table->foreign('dia_id')->on('dias')->references('id');
             $table->timestamps();

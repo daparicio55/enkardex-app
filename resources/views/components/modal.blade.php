@@ -1,9 +1,9 @@
     <!-- Modal -->
     <div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}" aria-hidden="true">
         @if(isset($parameter))
-            {!! Form::open(['route'=>[$route,$parameter],'method'=>$method]) !!}    
+            {!! Form::open(['route'=>[$route,$parameter],'method'=>$method,'class'=>'d-inline']) !!}    
         @else
-            {!! Form::open(['route'=>$route,'method'=>$method]) !!}
+            {!! Form::open(['route'=>$route,'method'=>$method,'class'=>'d-inline']) !!}
         @endif
         <div class="modal-dialog">
             <div class="modal-content">

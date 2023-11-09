@@ -11,4 +11,10 @@ class Dia extends Model
     public function kardex(){
         return $this->belongsTo(Kardex::class);
     }
+    public function ddietas(){
+        return $this->hasMany(DiaDieta::class,'dia_id','id');
+    }
+    public function dprocedmientos(){
+        return $this->hasMany(DiaProcedimiento::class,'dia_id','id');
+    }
 }

@@ -20,4 +20,13 @@ class Kardex extends Model
     public function dias(){
         return $this->hasMany(Dia::class);
     }
+    public function eauxiliares(){
+        return $this->hasMany(Eauxiliare::class);
+    }
+    public function servicio(){
+        return  $this->belongsTo(Servicio::class);
+    }
+    public function doctore(){
+        return $this->belongsTo(Doctore::class);
+    }
 }

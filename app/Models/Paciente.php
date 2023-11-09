@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Paciente extends Model
 {
     use HasFactory;
+    public $fillable = [
+        "nombres",
+        "apellidoPaterno",
+        "apellidoMaterno",
+        "nacimiento",
+        "edad",
+        "sexo",
+        "historia",
+        "numeroDocumento",
+    ];
+    public function alergias(){
+        return $this->hasMany(Alergia::class);
+    }
 }

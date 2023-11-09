@@ -11,4 +11,7 @@ class DiaEauxiliare extends Model
     public function eauxiliare(){
         return $this->belongsTo(Eauxiliare::class,'eauxiliare_id','id');
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

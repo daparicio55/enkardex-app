@@ -15,22 +15,7 @@
     <a href="{{ route('licenciados.kardexes.index') }}" class="btn btn-warning">
         <i class="fas fa-arrow-circle-left"></i> Regresar
     </a>
-    <x-Modal id="addday" title="Agregar un dia de atencion" type="primary" icon="fas fa-calendar-day"
-        route="licenciados.kardexes.dias.store" parameter=null method='POST'>
-        <x-slot:body>
-            <div class="row">
-                <input type="hidden" name="kardex" value="{{ $kardex->id }}">
-                <input type="hidden" name="local" value="dietas">
-                <div class="col-sm-12 col-md-12">
-                    {!! Form::label('fecha', 'Fecha', [null]) !!}
-                    {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-        </x-slot:body>
-        <x-slot:textbutton>
-            Agregar día
-        </x-slot:textbutton>
-    </x-Modal>
+    <x-Modaladdday :id="$kardex->id" ubicacion="dietas" />
 @stop
 
 @section('content')
@@ -46,7 +31,7 @@
                             route="licenciados.kardexes.ddietas.store" method="POST" parameter=null>
                             <x-slot:body>
                                 <input type="hidden" name="dia" value="{{ $dia->id }}">
-                                <x-adminlte-select2 id="dietas" name="dietas[]"
+                                <x-adminlte-select2 id="dietas-{{ $dia->id }}" name="dietas[]"
                                     label="Seleccione las dietas para este día" label-class="text-dark" igroup-size="md"
                                     data-placeholder="Seleccione multiples dietas..." multiple>
                                     <x-slot name="prependSlot">

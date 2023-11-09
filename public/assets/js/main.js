@@ -3,7 +3,21 @@ document.addEventListener('submit',function(event){
     event.submitter.setAttribute('disabled',true)
     //console.log(event.submitter.setAttribute('disabled',true));
 });
-
+function edad(edad) {
+    if (edad != "") {   
+        console.log("lleno");
+        var fechaNacimiento = edad;
+        // Parsea la fecha de nacimiento a un objeto Date
+        var fechaNacimientoDate = new Date(fechaNacimiento);
+        // Obtiene la fecha actual
+        var fechaActual = new Date();
+        // Calcula la diferencia en milisegundos entre la fecha actual y la fecha de nacimiento
+        var diferencia = fechaActual - fechaNacimientoDate;
+        // Convierte la diferencia de milisegundos a años
+        var edad = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25));
+        return edad;
+    }
+}
 
 function mostrarPantallaDeCarga() {
     const loader = document.getElementById('loader-wrapper');
@@ -16,7 +30,29 @@ function ocultarPantallaDeCarga() {
     loader.style.display = "none";
     loader.style.opacity = '0'; // Establece la opacidad al 0%
 }
-
+function alergias(id,ruta){
+    if (id == 0){
+        console.log('sin alergias');
+    }else{
+        mostrarPantallaDeCarga();
+        fetch(ruta+'apis/alergias/'+id)
+        .then(response => {
+            if(!response.ok){
+                throw new Error('Error en la solicitud');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error =>{
+            console.log(error);
+        })
+        .finally(()=>{
+            ocultarPantallaDeCarga();
+        });
+    }
+}
 function buscardni(dni,ruta){
     //console.log(dni);
     if(dni == ""){
@@ -31,43 +67,36 @@ function buscardni(dni,ruta){
             return response.json();
         })
         .then(data =>{
-            console.log(data);
-            let apellidos = document.getElementById('apellidos');
+            console.log(data.alergias);
             let nombres = document.getElementById('nombres');
-            let telefono = document.getElementById('telefono');
-            let correo = document.getElementById('correo');
-            let direccion = document.getElementById('direccion');
-            let cliente = document.getElementById('cliente');
+            let apellidoMaterno = document.getElementById('apellidoMaterno');
+            let apellidoPaterno = document.getElementById('apellidoPaterno');
             let sexo = document.getElementById('sexo');
             let nacimiento = document.getElementById('nacimiento');
-            if(data.message == 'dni no valido'){
-                //nose encontro nada.
-                nombres.value = 'ENTRADA MANUAL'
-                apellidos.value = 'ENTRADA MANUAL'
-                telefono.value = "999999999";
-                correo.value = "sincorreo@gmail.com";
-                direccion.value = "sin dirección";
-            }else{
-                //completamos con los datos.
+            let edad = document.getElementById('edad');
+            let historia = document.getElementById('historia');
+            let cliente = document.getElementById('cliente');
+            if(data.message == true){
                 nombres.value = data.nombres;
-                apellidos.value = data.apellidoPaterno+' '+data.apellidoMaterno;
-                telefono.value = data.telefono;
-                correo.value = data.correo;
-                direccion.value = data.direccion;
-                if('cliente' in data ){
-                    cliente.value = data.cliente;
-                }else{
-                    cliente.value = "0"
-                }
-                //sexo.value = data.sexo;
+                apellidoMaterno.value = data.apellidoMaterno;
+                apellidoPaterno.value = data.apellidoPaterno;
+                sexo.value = data.sexo;
                 nacimiento.value = data.nacimiento;
+                edad.value = data.edad;
+                historia.value = data.historia;
+                cliente.value = data.cliente;
+            }else{
+                console.log("no");
             }
+            //ahora debemos regresar sus alergias..
+
+            $('#alergias').val(data.alergias);
+            $('#alergias').trigger('change'); // Notify any JS components that the value changed
         })
         .catch(error=>{
             console.log(error);
         })
         .finally(()=>{
-            console.log("se termino");
             ocultarPantallaDeCarga();
         });
         //console.log(dni);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Licenciados;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dia;
+use App\Models\Kardex;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,9 +19,10 @@ class DiaController extends Controller
         /* $this->middleware(['auth:sanctum',config('jetstream.auth_session'),'verified']); */
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {
-        //
+        /* $kardex = Kardex::findOrFail($request->kardex);
+        return view('licenciados.kardexes.dias.index',compact('kardex')); */
     }
 
     /**
@@ -35,18 +38,30 @@ class DiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
         try {
             //code...
-            $dia = new Dia();
-            $dia->fecha = $request->fecha;
-            //$dia->hora = $request->hora;
-            $dia->kardex_id = $request->kardex;
-            $dia->save();
-            return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('info','se agrego correctamente el día');
+            $kardex = Kardex::findOrFail($request->kardex);
+            $day = Carbon::parse($kardex->dias()->orderBy('fecha','desc')->first()->fecha);    
+            for ($i=0; $i < $request->add; $i++) { 
+                # code...
+                $dia = new Dia();
+                $dia->fecha = $day->addDay();
+                $dia->kardex_id = $kardex->id;
+                $dia->save();
+            }
+            if($request->local == "kardexes"){
+                return Redirect::route('licenciados.kardexes.index')->with('info','se agrego correctamente el día');
+            }else{
+                return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('info','se agrego correctamente el día');
+            }
         } catch (\Throwable $th) {
             //throw $th;
-            return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('error','no se agregó agregar el día');
+            if($request->local == "kardexes"){
+                return Redirect::route('licenciados.kardexes.index')->with('error','no se agregó agregar el día');
+            }else{
+                return Redirect::to('/licenciados/kardexes/'.$request->local.'?kardex='.$request->kardex)->with('error','no se agregó agregar el día');
+            }
         }
         
     }

@@ -11,4 +11,10 @@ class DiaProcedimiento extends Model
     public function procedimiento(){
         return $this->belongsTo(Procedimiento::class);
     }
+    public function dia(){
+        return $this->belongsTo(Dia::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

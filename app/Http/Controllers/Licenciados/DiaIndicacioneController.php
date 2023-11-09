@@ -41,7 +41,6 @@ class DiaIndicacioneController extends Controller
         //
         try {
             //RECORDAR LA VALIDACION 
-
             $dia = Dia::findOrFail($request->dia_id);
             $diaindicaciones = DiaIndicacione::updateOrCreate([
                 'dia_id'=>$request->dia_id,
@@ -49,17 +48,17 @@ class DiaIndicacioneController extends Controller
                 'hora'=>$request->hora
             ],
             [
-                'dia_id'=>$request->dia_id,
+                'dia_id'=>$dia->id,
                 'indicacione_id'=>$request->indicacione_id,
                 'hora'=>$request->hora,
                 'registro'=>Carbon::now(),
                 'tipo'=>$request->tipo,
-                /* 'user_id'=>auth()->id(), */
+                'user_id'=>Auth::user()->id,
             ]);
             return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$diaindicaciones->dia->kardex->id)->with('info','se puso la hora en '.$request->tipo);
         } catch (\Throwable $th) {
             //throw $th;
-            return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$diaindicaciones->dia->kardex->id)->with('error','nose pudo guardar los datos correctamente');
+            return Redirect::to('/licenciados/kardexes/indicaciones?kardex='.$dia->kardex->id)->with('error','nose pudo guardar los datos correctamente');
         }
     }
 

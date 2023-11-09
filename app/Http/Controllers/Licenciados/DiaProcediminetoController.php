@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Licenciados;
 use App\Http\Controllers\Controller;
 use App\Models\Dia;
 use App\Models\DiaProcedimiento;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class DiaProcediminetoController extends Controller
@@ -81,9 +83,16 @@ class DiaProcediminetoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $dprocedimiento = DiaProcedimiento::findOrFail($id);
-        dd($dprocedimiento);
+        try {
+            //code...
+            $dprocedimiento = DiaProcedimiento::findOrFail($id);
+            $dprocedimiento->registro = Carbon::now();
+            $dprocedimiento->user_id = Auth::user()->id;
+            $dprocedimiento->update();
+            return Redirect::to("/licenciados/kardexes/procedimientos?kardex=".$dprocedimiento->dia->kardex_id)->with('info','se actualizo la informacion correctamente');
+        } catch (\Throwable $th) {
+            return Redirect::to("/licenciados/kardexes/procedimientos?kardex=".$dprocedimiento->dia->kardex_id)->with('error','no se actualizo la informacion correctamente');
+        }
     }
 
     /**
@@ -91,6 +100,17 @@ class DiaProcediminetoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            //code...
+            $dprocedimiento = DiaProcedimiento::findOrFail($id);
+            $kardex = $dprocedimiento->dia->kardex_id;
+            $dprocedimiento->delete();
+            return Redirect::to('/licenciados/kardexes/procedimientos?kardex='.$kardex)
+            ->with('info','se agregaron las dietas correctamente');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return Redirect::route('licenciados.kardexes.index')
+            ->with('error','no puede agregar las dietas');
+        }
     }
 }

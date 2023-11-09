@@ -75,9 +75,14 @@ class DiaEauxiliareController extends Controller
             $dia = DiaEauxiliare::findOrFail($id);
             if($dia->estado == "solicitado"){
                 $dia->estado ="realizado";
+                $dia->user_id = auth()->id();
+                $dia->registro = Carbon::now();
             }else{
                 $dia->estado ="solicitado";
+                $dia->user_id = null;
+                $dia->registro = null;
             }
+            
             $dia->update();
             return Redirect::to("/licenciados/kardexes/eauxiliares?kardex=".$dia->eauxiliare->kardex->id)->with('info','se cambio el estado el exámen');
         } catch (\Throwable $th) {

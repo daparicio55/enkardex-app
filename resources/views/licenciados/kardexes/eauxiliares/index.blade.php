@@ -8,7 +8,7 @@
             <h1><b>Exámenes Auxiliares</b></h1>
         </div>
         <div class="col-sm-12 col-md-6 text-right bg-secondary">
-            <h5 class="pt-2 pr-2"><b>#{{ ceros($kardex->numero) }} - {{ Str::upper($kardex->paciente->apellidos) }},
+            <h5 class="pt-2 pr-2"><b>#{{ ceros($kardex->numero) }} - {{ Str::upper($kardex->paciente->apellidoPaterno) }} {{ Str::upper($kardex->paciente->apellidoMaterno) }},
                     {{ Str::title($kardex->paciente->nombres) }}</b></h5>
         </div>
     </div>
@@ -23,25 +23,10 @@
     ]) !!}
     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
     <button type="submit" class="btn btn-success">
-        <i class="fas fa-plus-circle"></i> Nuevo Exámen
+        <i class="fas fa-plus-circle"></i>
     </button>
     {!! Form::close() !!}
-    <x-Modal id="addday" title="Agregar un dia de atencion" type="primary" icon="fas fa-calendar-day"
-        route="licenciados.kardexes.dias.store" parameter=null method='POST'>
-        <x-slot:body>
-            <div class="row">
-                <input type="hidden" name="kardex" value="{{ $kardex->id }}">
-                <input type="hidden" name="local" value="eauxiliares">
-                <div class="col-sm-12 col-md-12">
-                    {!! Form::label('fecha', 'Fecha', [null]) !!}
-                    {!! Form::date('fecha', null, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-        </x-slot:body>
-        <x-slot:textbutton>
-            Agregar día
-        </x-slot:textbutton>
-    </x-Modal>
+    <x-Modaladdday :id="$kardex->id" ubicacion="eauxiliares" />
 @stop
 
 @section('content')

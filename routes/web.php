@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administrador\ApiController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EauxiliareController;
 use App\Http\Controllers\HomeController;
@@ -58,3 +59,6 @@ use Illuminate\Support\Facades\Route;
 //RUTA DE INICIO
 Route::get('/',[HomeController::class,'index'])->name('index');
 
+//RUTAS DE APIS
+Route::get('/apis/getdni/{dni}',[ApiController::class,'getdni'])
+->name('apis.getdni');

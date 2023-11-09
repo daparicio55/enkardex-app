@@ -13,9 +13,13 @@ class DiaIndicacione extends Model
         'indicacione_id',
         'hora',
         'tipo',
-        'registro'
+        'registro',
+        'user_id'
     ];
     public function dia(){
         return $this->belongsTo(Dia::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

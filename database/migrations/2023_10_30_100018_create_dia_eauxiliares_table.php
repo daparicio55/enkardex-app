@@ -17,9 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('dia_id');
             $table->time('hora');
             $table->string('estado')->default('solicitado');
+            $table->dateTime('registro')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unique(['hora','dia_id','eauxiliare_id']);
             $table->foreign('dia_id')->on('dias')->references('id')->onDelete('cascade');
             $table->foreign('eauxiliare_id')->on('eauxiliares')->references('id')->onDelete('cascade');
+            $table->foreign('user_id')->on('users')->references('id');
             $table->timestamps();
         });
     }

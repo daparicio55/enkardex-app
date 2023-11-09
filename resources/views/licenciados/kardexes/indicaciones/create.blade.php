@@ -1,10 +1,8 @@
 @extends('adminlte::page')
-
 @section('title', 'Medicamentos')
-
 @section('content_header')
     <h1>Registrar Medicamentos</h1>
-    <p>#{{ $kardex->numero }} - {{ Str::upper($kardex->paciente->apellidos) }},{{ Str::title($kardex->paciente->nombres) }}
+    <p>{{ ceros($kardex->numero) }} - {{ Str::upper($kardex->paciente->apellidoPaterno) }} {{ Str::upper($kardex->paciente->apellidoMaterno) }},{{ Str::title($kardex->paciente->nombres) }}
     </p>
     {!! Form::open(['route' => 'licenciados.kardexes.indicaciones.index', 'method' => 'get']) !!}
     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
@@ -38,8 +36,8 @@
                                     {{ $medicamento->especificaciones }}</option>
                             @endforeach
                         </x-adminlte-select2>
-                        <x-adminlte-textarea name="observacion" label="Descripcion de indicaciones" rows=5 label-class="text-dark"
-                            igroup-size="sm" placeholder="indicaciones...">
+                        <x-adminlte-textarea name="observacion" label="Descripcion de indicaciones" rows=5
+                            label-class="text-dark" igroup-size="sm" placeholder="indicaciones...">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text bg-info">
                                     <i class="fas fa-lg fa-file-alt"></i>
@@ -49,7 +47,6 @@
                     </div>
                 </div>
                 <x-slot name="footerSlot">
-                    {{-- <x-adminlte-button class="d-flex ml-auto" theme="light" label="Guardar" icon="fas fa-sign-in"/> --}}
                     <button type="submit" class="btn btn-info">
                         <i class="fas fa-save"></i> Guardar
                     </button>
@@ -60,5 +57,5 @@
     </div>
 @stop
 @push('js')
-    <x-Alert/>
+    <x-Alert />
 @endpush

@@ -14,4 +14,7 @@ class Eauxiliare extends Model
     public function kardex(){
         return $this->belongsTo(Kardex::class);
     }
+    public function doctore(){
+        return $this->belongsTo(Doctore::class);
+    }
 }
