@@ -64,8 +64,8 @@ return [
     */
 
     'logo' => '<b>EN</b>Kardex',
-    'logo_img' => 'vendor/adminlte/dist/img/apple-icon-76x76.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo_img' => 'vendor/adminlte/dist/img/apple-icon-180x180.png',
+    'logo_img_class' => 'brand-image img-rounded elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
@@ -84,11 +84,11 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'path' => 'vendor/adminlte/dist/img/apple-icon-114x114.png',
             'alt' => 'Auth Logo',
-            'class' => '',
+            'class' => 'img-rounded',
             'width' => 70,
             'height' => 70,
         ],
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/apple-icon-60x60.png',
+            'path' => 'vendor/adminlte/dist/img/apple-icon-114x114.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 80,
@@ -192,7 +192,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-5',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -311,27 +311,32 @@ return [
         [
             'text'=>'Medicamentos',
             'icon'=>'fas fa-capsules',
+            'icon_color'=>'warning',
             'url'=>'#'
         ],
         [
             'text'=>'Unidades',
             'icon'=>'fas fa-pencil-ruler',
+            'icon_color'=>'warning',
             'url'=>'#'
         ],
         [
             'text'=>'Servicios',
             'icon'=>'fas fa-hand-holding-medical',
+            'icon_color'=>'warning',
             'url'=>'#'
         ],
         ['header' => 'LICENCIADOS'],
         [
             'text'=>'Médicos',
             'icon'=>'fas fa-user-md',
+            'icon_color'=>'red',
             'url'=>'#'
         ],
         [
             'text'=>'Pacientes',
             'icon'=>'fas fa-user-injured',
+            'icon_color'=>'success',
             'url'=>'#'
         ],
         [
