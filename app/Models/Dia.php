@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dia extends Model
 {
+    public $fillable = [
+        'fecha',
+        'kardex_id',
+    ];
     use HasFactory;
     public function kardex(){
         return $this->belongsTo(Kardex::class);
@@ -16,5 +20,8 @@ class Dia extends Model
     }
     public function dprocedmientos(){
         return $this->hasMany(DiaProcedimiento::class,'dia_id','id');
+    }
+    public function dexamenes(){
+        return $this->hasMany(DiaExamene::class,'dia_id','id');
     }
 }

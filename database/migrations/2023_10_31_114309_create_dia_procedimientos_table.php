@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dia_procedimientos', function (Blueprint $table) {
-            $table->id();
-            $table->time('hora');
+            $table->id();            
             $table->unsignedBigInteger('procedimiento_id');
             $table->unsignedBigInteger('dia_id');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unique(['procedimiento_id','dia_id','hora']);
-            $table->dateTime('registro')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->dateTime('fechahora');
             $table->foreign('user_id')->on('users')->references('id');
             $table->foreign('procedimiento_id')->on('procedimientos')->references('id');
             $table->foreign('dia_id')->on('dias')->references('id');

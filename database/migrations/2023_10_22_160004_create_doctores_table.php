@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombres');
             $table->string('apellidos');
+            $table->boolean('visible')->default(true);
             $table->timestamps();
         });
     }

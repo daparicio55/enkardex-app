@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Eauxiliare extends Model
 {
+    public $fillable = [
+        'descripcion',
+        'examene_id',
+        'doctore_id',
+        'kardex_id',
+    ];
     use HasFactory;
     public function examene(){
         return $this->belongsTo(Examene::class);

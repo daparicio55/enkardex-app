@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Dia;
 use App\Models\DiaIndicacione;
+use App\Models\Indicacione;
+use App\Models\Kardex;
 use Illuminate\Support\Carbon;
+
 
 function func(){
     return "1";
@@ -55,4 +59,46 @@ function estadohora($dia,$indicacione,$hora){
         $estado = $res->tipo;
     }
     return $estado;
+}
+function icono($indicacione_id,$dia_id,$hora){
+    $h = date('H:i:s', strtotime($hora));
+    $dia_indicaione = DiaIndicacione::where('indicacione_id','=',$indicacione_id)
+    ->where('dia_id','=',$dia_id)
+    ->where('hora','=',$h)
+    ->first();
+    if (isset($dia_indicaione->tipo)){
+        if ($dia_indicaione->tipo == "aplicado"){
+            return "fas fa-check";
+        }
+        if ($dia_indicaione->tipo == "no aplica"){
+            return "fas fa-ban";
+        }
+    }else{
+        return "fas fa-hourglass-half";
+    }
+}
+function horas($kardex_id,$dia_id,$indicacione_id){
+    $array=[];
+    $kardex = Kardex::findOrFail($kardex_id);
+    $dia = Dia::findOrFail($dia_id);
+    $indicacione = Indicacione::findOrFail($indicacione_id);
+    $ffin =  Carbon::parse($kardex->dias()->orderBy('fecha','desc')->first()->fecha .' '.'23:59:00');
+    $inicio =  Carbon::parse($kardex->fingreso .' '. $kardex->hingreso);
+    /* $inicio->addHours($frecuencia);
+    return $inicio->addHours($frecuencia); */
+
+    while ($ffin->gt($inicio)) {
+        if($inicio->isSameDay($dia->fecha)){
+            $h = horacolor($inicio);
+            array_push($array,$h);
+            /* array_push($array,[
+                'fecha' => date('d-m-y H:i:s',strtotime($inicio)),
+                'color'=> $color,
+            ]); */
+        }
+        
+        $inicio->addHours($indicacione->frecuencia);
+    }
+    $objeto = (Object)$array;
+    return $objeto;
 }

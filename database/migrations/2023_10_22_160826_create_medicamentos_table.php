@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('unidad');
             $table->string('restriccion')->nullable();
             $table->longText('indicaciones')->nullable();
+            $table->boolean('visible')->default(true);
             $table->unique(['denominacion','especificaciones']);
             $table->timestamps();
         });

@@ -1,8 +1,8 @@
-document.addEventListener('submit',function(event){
+/* document.addEventListener('submit',function(event){
     //event.preventDefault();
     event.submitter.setAttribute('disabled',true)
     //console.log(event.submitter.setAttribute('disabled',true));
-});
+}); */
 function edad(edad) {
     if (edad != "") {   
         console.log("lleno");

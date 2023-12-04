@@ -312,7 +312,7 @@ return [
             'text'=>'Medicamentos',
             'icon'=>'fas fa-capsules',
             'icon_color'=>'warning',
-            'url'=>'#'
+            'route'=>'administrador.medicamentos.index'
         ],
         [
             'text'=>'Unidades',
@@ -544,41 +544,6 @@ return [
                 ],
             ],
         ],
-        /* 'Datatables' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
-                ],
-            ],
-        ], */
-        /* 'Select2' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
-                ],
-            ],
-        ], */
         'Select2' => [
             'active' => true,
             'files' => [
@@ -596,6 +561,26 @@ return [
                     'type' => 'css',
                     'asset' => true,
                     'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                ],
+            ],
+        ],
+        'bootstrap-select' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/snapappointments/bootstrap-select/dist/css/bootstrap-select.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/snapappointments/bootstrap-select/dist/js/bootstrap-select.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/snapappointments/bootstrap-select/dist/js/i18n/defaults-es_ES.js',
                 ],
             ],
         ],

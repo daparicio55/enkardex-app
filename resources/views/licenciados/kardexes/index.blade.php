@@ -4,13 +4,45 @@
 
 @section('content_header')
     <h1>Hojas de tratamiento terapeutico (KARDEX)</h1>
-    <a href="{{ route('licenciados.kardexes.create') }}" class="btn btn-success mt-1">
+{{--     <a href="{{ route('licenciados.kardexes.create') }}" class="btn btn-success mt-1">
         <i class="fas fa-plus-circle"></i> Nuevo
-    </a>
+    </a> --}}
 @stop
 
 @section('content')
-    <div class="row">
+<div class="row">
+    <div class="col-sm-12">
+        @foreach ($kardexes as $kardex)
+            <div class="card">
+                <div class="card-header bg-info">
+                    <x-Modal :id="'delete-' . $kardex->id" title="Confirmar Accion" type="danger"
+                        icon="fas fa-trash-alt" route="licenciados.kardexes.destroy" :parameter="$kardex->id"
+                        method='delete'>
+                        <x-slot:body>
+                            <p class="text-secondary">¿Esta seguro que desea eliminar este Kardex? Recuerde que tambien eliminara
+                                todos los detalles relacionados a esta</p>
+                        </x-slot>
+                    </x-Modal>
+                    <a class="btn btn-warning" href="{{ route('kardex.editar',$kardex->id) }}">
+                        <i class="fas fa-user-edit"></i>
+                    </a>
+                    #{{ ceros($kardex->numero) }}  {{ Str::upper($kardex->paciente->apellidoPaterno) }} 
+                    {{ Str::upper($kardex->paciente->apellidoMaterno) }}, {{ Str::title($kardex->paciente->nombres) }}
+                    
+                </div>
+                <div class="card-header">
+                    <h5 class=" border border-top-0 border-left-0 border-right-0 d-block pb-1">
+                        {{ $kardex->servicio->nombre }}
+                    </h5>
+                    <p class="card-text">
+                        {{ $kardex->diagnostico }}
+                    </p>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+    {{-- <div class="row">
         <div class="col-sm-12">
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -44,7 +76,6 @@
                                         <i class="fas fa-pills"></i>
                                     </button>
                                     {!! Form::close() !!}
-                                    {{-- examens auxiales --}}
                                     {!! Form::open(['route' => 'licenciados.kardexes.eauxiliares.index', 'method' => 'get', 'class' => 'd-inline']) !!}
                                     <input type="hidden" name="kardex" value="{{ $kardex->id }}">
                                     <button type="submit" class="btn btn-success">
@@ -67,13 +98,10 @@
                                         <i class="fas fa-procedures"></i>
                                     </button>
                                     {!! Form::close() !!}
-                                    {{-- dias --}}
                                     <x-Modaladdday :id="$kardex->id" ubicacion="kardexes" />
-                                    {{-- imprimir --}}
                                     <a href="{{ route('licenciados.kardexes.show',$kardex->id) }}" class="btn btn-outline-warning" title="imprimir hoja de tratamiento terapeutico">
                                         <i class="fas fa-print"></i>
                                     </a>
-                                    {{-- MODAL ELIMINAR --}}
                                     <x-Modal :id="'delete-' . $kardex->id" title="Confirmar Accion" type="danger"
                                         icon="fas fa-trash-alt" route="licenciados.kardexes.destroy" :parameter="$kardex->id"
                                         method=null>
@@ -90,8 +118,18 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 @stop
+
+
+@section('footer')
+<div class="container d-flex justify-content-around">
+    <a href="{{ route('index') }}" class="btn btn-info btn-lg">
+        <i class="fas fa-home fa-lg"></i> Inicio
+    </a>
+</div>
+@stop
+
 @push('js')
     <x-Alert />
 @endpush

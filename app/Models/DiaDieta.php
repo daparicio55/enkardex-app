@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DiaDieta extends Model
 {
     use HasFactory;
+    public $fillable = [
+        'dia_id',
+        'dieta_id',
+    ];
     public function dieta(){
         return $this->belongsTo(Dieta::class,'dieta_id','id');
     }

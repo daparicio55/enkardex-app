@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Administrador\ApiController;
+use App\Http\Controllers\Administrador\MedicamentoController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EauxiliareController;
 use App\Http\Controllers\HomeController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Licenciados\DiaEauxiliareController;
 use App\Http\Controllers\Licenciados\DiaIndicacioneController;
 use App\Http\Controllers\Licenciados\DiaProcediminetoController;
 use App\Http\Controllers\ProcedimientoController;
+use App\Models\Medicamento;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,14 @@ use Illuminate\Support\Facades\Route;
 */
 //RUTAS AUTH
     Auth::routes(['register'=>false]);
+
+Route::get('/kardex',[KardexController::class,'crear'])->name('kardex.crear');
+Route::get('/kardex/editar/{id}',[KardexController::class,'editar'])->name('kardex.editar');
+
+
+Route::get('/administrador/medicamentos',[MedicamentoController::class,'index'])->name('administrador.medicamentos.index');
+Route::delete('/administrador/medicamentos/{id}',[MedicamentoController::class,'delete'])->name('administrador.medicamento.destroy');
+
 
 //Rutas para LIcenciados
     //DETALLES DE LAS PARTES DE KARDEX

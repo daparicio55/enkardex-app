@@ -34,12 +34,8 @@
 
 @stop
 @section('footer')
-    Sistema de Kardex digital...
+    <x-footer-buttons />
 @stop
-
-
-
-
 @push('js')
 <script>
     $(document).ready(function() {

@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class DiaProcedimiento extends Model
 {
+    public $fillable = [
+        'procedimiento_id',
+        'dia_id',
+        'fechahora',
+        'user_id',
+    ];
     use HasFactory;
     public function procedimiento(){
         return $this->belongsTo(Procedimiento::class);
@@ -16,5 +22,8 @@ class DiaProcedimiento extends Model
     }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function done(){
+        return $this->hasOne(DoneDiaProcedimiento::class,'diaprocedimiento_id','id');
     }
 }

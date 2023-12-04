@@ -54,7 +54,6 @@
                     </div>
                 </div>
                 <x-slot name="footerSlot">
-                    {{-- <x-adminlte-button class="d-flex ml-auto" theme="light" label="Guardar" icon="fas fa-sign-in"/> --}}
                     <button type="submit" class="btn btn-info">
                         <i class="fas fa-save"></i> Guardar
                     </button>

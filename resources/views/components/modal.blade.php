@@ -29,7 +29,7 @@
         {!! Form::close() !!}
     </div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-{{ $type }}" data-toggle="modal" data-target="#{{ $id }}">
+    <button type="button" class="btn btn-{{ $type }} mt-1" data-toggle="modal" data-target="#{{ $id }}">
         <i class="{{ $icon }}"></i>
         @if (isset($textbutton))
             {{ $textbutton }}    

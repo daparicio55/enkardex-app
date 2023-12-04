@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->unsignedBigInteger('kardex_id');
-            $table->foreign('kardex_id')->on('kardexes')->references('id');
+            $table->foreign('kardex_id')->on('kardexes')->references('id')->cascadeOnDelete();
             $table->unique(['fecha','kardex_id']);
             $table->timestamps();
         });

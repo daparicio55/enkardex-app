@@ -43,6 +43,16 @@ class KardexController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function crear(){
+        return view('kardex.index');
+    }
+    public function editar($id){
+        return view('kardex.edit',compact('id'));
+    }
+
+
+
+
     public function create()
     {
         $medicamentos = Medicamento::orderBy('denominacion','asc')
@@ -186,6 +196,7 @@ class KardexController extends Controller
         try {
             //code...
             $kardex = Kardex::findOrFail($id);
+            $kardex->delete();
         } catch (\Throwable $th) {
             //throw $th;
             return Redirect::route('licenciados.kardexes.index')->with('error','error cuando se intento eliminar este Kardex');

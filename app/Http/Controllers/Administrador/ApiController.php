@@ -21,10 +21,6 @@ class ApiController extends Controller
         try {
             //vamos a buscar el dni en la base de datos
             if(Paciente::where('numeroDocumento','=',$dni)->count() == 0){
-                //no hay registros y lo buscamos en la api de reniec
-                /* $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImR3YXBhcmljaWNpb0BnbWFpbC5jb20ifQ.2AdhICiTyw6lpnrxtfK2ajSgfMGiMn-71RvrRGKd8Uk";
-                $respuesta = file_get_contents('https://dniruc.apisperu.com/api/v1/dni/'.$dni.'?token='.$token);         
-                return $respuesta; */
                 $token = 'apis-token-6015.6F8CiG1YD5PHFFaFe13Fg1z64ezRlSZx';
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
