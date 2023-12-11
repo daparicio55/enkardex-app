@@ -318,20 +318,20 @@ return [
             'text'=>'Unidades',
             'icon'=>'fas fa-pencil-ruler',
             'icon_color'=>'warning',
-            'url'=>'#'
+            'route'=>'administrador.unidades.index'
         ],
         [
             'text'=>'Servicios',
             'icon'=>'fas fa-hand-holding-medical',
             'icon_color'=>'warning',
-            'url'=>'#'
+            'route'=>'administrador.servicios.index'
         ],
         ['header' => 'LICENCIADOS'],
         [
             'text'=>'Médicos',
             'icon'=>'fas fa-user-md',
             'icon_color'=>'red',
-            'url'=>'#'
+            'route'=>'administrador.medicos.index'
         ],
         [
             'text'=>'Pacientes',

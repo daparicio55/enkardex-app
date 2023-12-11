@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Administrador\ApiController;
 use App\Http\Controllers\Administrador\MedicamentoController;
+use App\Http\Controllers\Administrador\MedicoController;
+use App\Http\Controllers\Administrador\ServicioController;
+use App\Http\Controllers\Administrador\UnidadeController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EauxiliareController;
 use App\Http\Controllers\HomeController;
@@ -13,7 +16,7 @@ use App\Http\Controllers\Licenciados\DiaEauxiliareController;
 use App\Http\Controllers\Licenciados\DiaIndicacioneController;
 use App\Http\Controllers\Licenciados\DiaProcediminetoController;
 use App\Http\Controllers\ProcedimientoController;
-use App\Models\Medicamento;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +40,14 @@ Route::get('/kardex/editar/{id}',[KardexController::class,'editar'])->name('kard
 Route::get('/administrador/medicamentos',[MedicamentoController::class,'index'])->name('administrador.medicamentos.index');
 Route::delete('/administrador/medicamentos/{id}',[MedicamentoController::class,'delete'])->name('administrador.medicamento.destroy');
 
+Route::get('/administrador/unidades',[UnidadeController::class,'index'])->name('administrador.unidades.index');
+Route::delete('/administrador/unidades/{id}',[UnidadeController::class,'delete'])->name('administrador.unidades.destroy');
+
+Route::get('/administrador/servicios',[ServicioController::class,'index'])->name('administrador.servicios.index');
+Route::delete('/administrador/servicios/{id}',[ServicioController::class,'delete'])->name('administrador.servicios.destroy');
+
+Route::get('/administrador/medicos',[MedicoController::class,'index'])->name('administrador.medicos.index');
+Route::delete('/administrador/medicos/{id}',[MedicoController::class,'delete'])->name('administrador.medicos.destroy');
 
 //Rutas para LIcenciados
     //DETALLES DE LAS PARTES DE KARDEX

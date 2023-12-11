@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unidade extends Model
 {
+    public $fillable = [
+        'nombre'
+    ];
     use HasFactory;
 }

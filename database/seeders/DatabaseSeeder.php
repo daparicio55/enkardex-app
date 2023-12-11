@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ViaSeed::class);
         $this->call(DietaSeed::class);
         $this->call(MedicamentoSeed::class);
-
+        $this->call(Licenciados::class);
 
         //creamos alergias
         Alergia::create([
