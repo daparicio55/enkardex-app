@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctore extends Model
 {
+    public $fillable = [
+        'nombres',
+        'apellidos'
+    ];
     use HasFactory;
     public function kardexes(){
         return $this->hasMany(Kardex::class);
