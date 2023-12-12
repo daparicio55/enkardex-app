@@ -338,7 +338,7 @@ return [
             'text'=>'Pacientes',
             'icon'=>'fas fa-user-injured',
             'icon_color'=>'success',
-            'url'=>'#'
+            'route'=>'licenciados.pacientes.index'
         ],
         [
             'text'=>'Kardex',

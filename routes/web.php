@@ -19,6 +19,7 @@ use App\Http\Controllers\Licenciados\DiaDietaController;
 use App\Http\Controllers\Licenciados\DiaEauxiliareController;
 use App\Http\Controllers\Licenciados\DiaIndicacioneController;
 use App\Http\Controllers\Licenciados\DiaProcediminetoController;
+use App\Http\Controllers\Licenciados\PacienteController;
 use App\Http\Controllers\ProcedimientoController;
 
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,9 @@ Route::delete('/administrador/medicos/{id}',[MedicoController::class,'delete'])-
 
 Route::get('/administrador/dietas',[AdministradorDietaController::class,'index'])->name('administrador.dietas.index');
 Route::delete('/administrador/dietas/{id}',[AdministradorDietaController::class,'delete'])->name('administrador.dietas.destroy');
+
+Route::get('/licenciados/pacientes',[PacienteController::class,'index'])->name('licenciados.pacientes.index');
+Route::delete('/licenciados/pacientes/{id}',[PacienteController::class,'delete'])->name('licenciados.pacientes.destroy');
 
 //Rutas para las herramientas
 

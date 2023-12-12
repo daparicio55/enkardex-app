@@ -22,6 +22,51 @@ class PacienteCreateForm extends Form
     public $talla;
     public $peso;
 
+    public function edit($id){
+        try {
+            //code...
+            $paciente = Paciente::findOrFail($id);
+            $this->id = $paciente->id;
+            $this->nombres = $paciente->nombres;
+            $this->apellidomaterno = $paciente->apellidoMaterno;
+            $this->apellidopaterno = $paciente->apellidoPaterno;
+            $this->dni = $paciente->numeroDocumento;
+            $this->sexo = $paciente->sexo;
+            $this->historia = $paciente->historia;
+            $this->edad = $paciente->edad;
+            $this->talla =  $paciente->talla;
+            $this->peso = $paciente->peso;
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
+
+    public function store(){
+        try {
+            //code...
+            $paciente = Paciente::updateOrCreate(
+                [
+                    'numeroDocumento'=>$this->dni,
+                ],
+                [
+                    'nombres'=>$this->nombres,
+                    'apellidoPaterno'=>$this->apellidopaterno,
+                    'apellidoMaterno'=>$this->apellidomaterno,
+                    'sexo'=>$this->sexo,
+                    'historia'=>$this->historia,
+                    'telefono'=>$this->telefono,
+                    'edad'=>$this->edad,
+                    'peso'=>$this->peso,
+                    'talla'=>$this->talla,
+                ]
+            );
+            $this->id = $paciente->id;
+        } catch (\Throwable $th) {
+            //throw $th;
+            dd($th->getMessage());
+        }
+    }
+
     public function buscardni(){
         //buscamos el paciente
         $paciente = $this->getdni($this->dni);
@@ -36,27 +81,7 @@ class PacienteCreateForm extends Form
         $this->talla = $paciente['talla'];
         $this->peso = $paciente['peso'];
     }
-
-    public function store(){
-        $paciente = Paciente::updateOrCreate(
-            [
-                'numeroDocumento'=>$this->dni,
-            ],
-            [
-                'nombres'=>$this->nombres,
-                'apellidoPaterno'=>$this->apellidopaterno,
-                'apellidoMaterno'=>$this->apellidomaterno,
-                'sexo'=>$this->sexo,
-                'historia'=>$this->historia,
-                'telefono'=>$this->telefono,
-                'edad'=>$this->edad,
-                'peso'=>$this->peso,
-                'talla'=>$this->talla,
-            ]
-        );
-        $this->id = $paciente->id;
-    }
-
+    
     public function getdni($dni){
         try {
             //vamos a buscar el dni en la base de datos
