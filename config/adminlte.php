@@ -291,23 +291,18 @@ return [
 
     'menu' => [
         // Navbar items:
-        /* [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ], */
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
-
-        // Sidebar items:
-        /* [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ], */
         //menus
         ['header' => 'ADMINISTRADOR'],
+        [
+            'text'=>'Usuarios',
+            'icon'=>'fas fa-user-nurse',
+            'icon_color'=>'danger',
+            'url'=>'#'
+        ],
         [
             'text'=>'Medicamentos',
             'icon'=>'fas fa-capsules',
@@ -325,6 +320,12 @@ return [
             'icon'=>'fas fa-hand-holding-medical',
             'icon_color'=>'warning',
             'route'=>'administrador.servicios.index'
+        ],
+        [
+            'text'=>'Dietas',
+            'icon'=>'fas fa-utensils',
+            'icon_color'=>'warning',
+            'route'=>'administrador.dietas.index',
         ],
         ['header' => 'LICENCIADOS'],
         [
@@ -344,84 +345,51 @@ return [
             'icon'=>'fas fa-list-ul',
             'route'=>'licenciados.kardexes.index'
         ],
-        //finmenus
-        /* [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        ['header'=>'HERRAMIENTAS'],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
+            'text'=>'Antropemetricas',
+            'icon'=>'fas fa-child',
+            'submenu'=>[
+                    [
+                        'text'=>'In. Masa Corporal',
+                        'route'=>'herramientas.imc.index'
                     ],
+                    [
+                        'text'=>'Perdidas Insensibles',
+                        'route'=>'herramientas.pinsensibles.index'
+                    ],
+                    [
+                        'text'=>'Su. Corporal Niños',
+                        'route'=>'herramientas.scninios.index'
+                    ],
+                    [
+                        'text'=>'Pre. Arterial Media',
+                        'route'=>'herramientas.parterial.index'
+                    ]
+            ]
+        ],
+        [
+            'text'=>'Prep. de Medicamentos',
+            'icon'=>'fas fa-pills',
+            'submenu'=>[
+                [
+                    'text'=>'Dosis Inyectables',
+                    'url'=>'#'
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text'=>'Jarabes y suspensiones',
+                    'url'=>'#'
                 ],
-            ],
+                [
+                    'text'=>'Velo. Infusión Inotrópicos',
+                    'url'=>'#'
+                ],
+                [
+                    'text'=>'Volu. T. Infusión Inotrópicos',
+                    'url'=>'#'
+                ]
+            ]
         ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ], */
     ],
 
     /*

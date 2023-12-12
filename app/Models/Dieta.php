@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dieta extends Model
 {
+    public $fillable = [
+        'nombre',
+        'descripcion'
+    ];
     use HasFactory;
 }

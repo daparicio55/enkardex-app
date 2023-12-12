@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('apellidoMaterno');
             $table->string('sexo');
             $table->integer('edad');
+            $table->decimal('talla')->nullable();
+            $table->decimal('peso')->nullable();
             $table->date('nacimiento')->nullable();
-            $table->string('historia');
+            $table->string('historia')->nullable();
             $table->string('telefono')->nullable();
             $table->string('correo')->nullable();
             $table->string('direccion')->nullable();

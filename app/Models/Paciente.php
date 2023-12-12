@@ -17,7 +17,9 @@ class Paciente extends Model
         "sexo",
         "historia",
         "numeroDocumento",
-        'telefono'
+        'telefono',
+        'peso',
+        'talla',
     ];
     public function alergias(){
         return $this->hasMany(Alergia::class);

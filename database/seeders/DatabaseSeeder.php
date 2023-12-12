@@ -97,6 +97,8 @@ class DatabaseSeeder extends Seeder
             'numeroDocumento'=>'12345678',
             'historia'=>'676668',
             'telefono'=>'987456314',
+            'talla'=>171,
+            'peso'=>78,
             'correo'=>'messi@elmejor.com',
             'direccion'=>'Jr. Santo Toribio Rodriguez de Mendoza 125'
         ]);

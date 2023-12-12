@@ -32,15 +32,7 @@
         </x-slot>
     </x-entrada>
 </div>
-<div class="col-sm-12 col-md-4 mt-2">
-    <x-entrada>
-        <input type="number" step="1" min="0" max="100" class="form-control" placeholder="Edad" wire:model="paciente_store.edad" required>
-        <x-slot name="end">
-            <i class="far fa-user-circle btn btn-info"></i>
-        </x-slot>
-    </x-entrada>
-</div>
-<div class="col-sm-12 col-md-4 mt-2">
+<div class="col-sm-12 col-md-3 mt-2">
     <x-entrada>
         <select class="form-control" wire:model="paciente_store.sexo" required>
             <option value="" disabled selected>Sexo</option>
@@ -54,13 +46,27 @@
         </x-slot>
     </x-entrada>
 </div>
-<div class="col-sm-12 col-md-4 mt-2">
+<div class="col-sm-12 col-md-3 mt-2">
     <x-entrada>
-        <input type="text" class="form-control" placeholder="Telefono" wire:model="paciente_store.telefono" required>
+        <input type="number" step="1" min="0" max="100" class="form-control" placeholder="Edad" wire:model="paciente_store.edad" required>
         <x-slot name="end">
-            <button class="btn btn-info">
-                <i class="fas fa-mobile-alt"></i>
-            </button>
+            <i class="far fa-user-circle btn btn-info"></i>
+        </x-slot>
+    </x-entrada>
+</div>
+<div class="col-sm-12 col-md-3 mt-2">
+    <x-entrada>
+        <input type="number" step="0.1" min="0" max="350" class="form-control" placeholder="Talla cm." wire:model="paciente_store.talla" required>
+        <x-slot name="end">
+            <i class="fab fa-instalod btn btn-info"></i>
+        </x-slot>
+    </x-entrada>
+</div>
+<div class="col-sm-12 col-md-3 mt-2">
+    <x-entrada>
+        <input type="number" step="0.1" min="0" max="100" class="form-control" placeholder="Peso Kg." wire:model="paciente_store.peso" required>
+        <x-slot name="end">
+            <i class="fab fa-instalod btn btn-info"></i>
         </x-slot>
     </x-entrada>
 </div>

@@ -5,8 +5,12 @@ use App\Http\Controllers\Administrador\MedicamentoController;
 use App\Http\Controllers\Administrador\MedicoController;
 use App\Http\Controllers\Administrador\ServicioController;
 use App\Http\Controllers\Administrador\UnidadeController;
+use App\Http\Controllers\Administrador\DietaController as AdministradorDietaController;
+
+
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EauxiliareController;
+use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndicacioneController;
 use App\Http\Controllers\Licenciados\KardexController;
@@ -48,6 +52,17 @@ Route::delete('/administrador/servicios/{id}',[ServicioController::class,'delete
 
 Route::get('/administrador/medicos',[MedicoController::class,'index'])->name('administrador.medicos.index');
 Route::delete('/administrador/medicos/{id}',[MedicoController::class,'delete'])->name('administrador.medicos.destroy');
+
+Route::get('/administrador/dietas',[AdministradorDietaController::class,'index'])->name('administrador.dietas.index');
+Route::delete('/administrador/dietas/{id}',[AdministradorDietaController::class,'delete'])->name('administrador.dietas.destroy');
+
+//Rutas para las herramientas
+
+Route::get('/herramientas/imc',[HerramientaController::class,'imc'])->name('herramientas.imc.index');
+Route::get('/herramientas/pinsensibles',[HerramientaController::class,'pinsensibles'])->name('herramientas.pinsensibles.index');
+Route::get('/herramientas/scninios',[HerramientaController::class,'scninios'])->name('herramientas.scninios.index');
+Route::get('/herramientas/parterial',[HerramientaController::class,'parterial'])->name('herramientas.parterial.index');
+
 
 //Rutas para LIcenciados
     //DETALLES DE LAS PARTES DE KARDEX

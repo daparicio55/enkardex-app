@@ -19,6 +19,8 @@ class PacienteCreateForm extends Form
     public $historia;
     public $telefono;
     public $edad;
+    public $talla;
+    public $peso;
 
     public function buscardni(){
         //buscamos el paciente
@@ -31,6 +33,8 @@ class PacienteCreateForm extends Form
         $this->sexo = $paciente['sexo'];
         $this->telefono = $paciente['telefono'];
         $this->historia = $paciente['historia'];
+        $this->talla = $paciente['talla'];
+        $this->peso = $paciente['peso'];
     }
 
     public function store(){
@@ -46,6 +50,8 @@ class PacienteCreateForm extends Form
                 'historia'=>$this->historia,
                 'telefono'=>$this->telefono,
                 'edad'=>$this->edad,
+                'peso'=>$this->peso,
+                'talla'=>$this->talla,
             ]
         );
         $this->id = $paciente->id;
@@ -92,6 +98,8 @@ class PacienteCreateForm extends Form
                     'numeroDocumento'=>$dni,
                     'sexo'=>'Femenino',
                     'historia'=>'0',
+                    'talla'=>null,
+                    'peso'=>null,
                     'alergias'=>[
                         [
                             'id'=>0,
@@ -122,6 +130,8 @@ class PacienteCreateForm extends Form
                     'edad'=>$cliente->edad,
                     'sexo'=>$cliente->sexo,
                     'historia'=>$cliente->historia,
+                    'peso'=>$cliente->peso,
+                    'talla'=>$cliente->talla,
                     'alergias'=>$alergias,
                 ];
                 return $array;
