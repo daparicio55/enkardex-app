@@ -6,8 +6,7 @@ use App\Http\Controllers\Administrador\MedicoController;
 use App\Http\Controllers\Administrador\ServicioController;
 use App\Http\Controllers\Administrador\UnidadeController;
 use App\Http\Controllers\Administrador\DietaController as AdministradorDietaController;
-
-
+use App\Http\Controllers\Administrador\LicenciadoController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EauxiliareController;
 use App\Http\Controllers\HerramientaController;
@@ -41,6 +40,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/kardex',[KardexController::class,'crear'])->name('kardex.crear');
 Route::get('/kardex/editar/{id}',[KardexController::class,'editar'])->name('kardex.editar');
 
+//Rutas para administrador
 
 Route::get('/administrador/medicamentos',[MedicamentoController::class,'index'])->name('administrador.medicamentos.index');
 Route::delete('/administrador/medicamentos/{id}',[MedicamentoController::class,'delete'])->name('administrador.medicamento.destroy');
@@ -56,6 +56,9 @@ Route::delete('/administrador/medicos/{id}',[MedicoController::class,'delete'])-
 
 Route::get('/administrador/dietas',[AdministradorDietaController::class,'index'])->name('administrador.dietas.index');
 Route::delete('/administrador/dietas/{id}',[AdministradorDietaController::class,'delete'])->name('administrador.dietas.destroy');
+
+Route::get('/administrador/licenciados',[LicenciadoController::class,'index'])->name('administrador.licenciados.index');
+Route::delete('/administrador/licenciados',[LicenciadoController::class,'delete'])->name('administrador.licenciados.destroy');
 
 Route::get('/licenciados/pacientes',[PacienteController::class,'index'])->name('licenciados.pacientes.index');
 Route::delete('/licenciados/pacientes/{id}',[PacienteController::class,'delete'])->name('licenciados.pacientes.destroy');

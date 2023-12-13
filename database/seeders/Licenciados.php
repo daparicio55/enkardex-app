@@ -15,6 +15,8 @@ class Licenciados extends Seeder
     {
         //
         $datos =  [
+            ['name'=>'Manuel','lastname'=>'Quispe Narváez','email'=>'mquispe@gmail.com','password'=>'12345678'],
+            ['name'=>'Litman','lastname'=>'Umpiri Loja','email'=>'lumpiri@gmail.com','password'=>'12345678'],
             ['name'=>'Vanessa','lastname'=>'Fernández Rojas.','email'=>'vfernandez@gmail.com','password'=>'12345678'],
             ['name'=>'Doris','lastname'=>'Lozano Santa Maria','email'=>'dsanta@gmail.com','password'=>'12345678'],
             ['name'=>'Deisy','lastname'=>'Mego Llaja.','email'=>'dllaja@gmail.com','password'=>'12345678'],
@@ -27,13 +29,11 @@ class Licenciados extends Seeder
             ['name'=>'Carmen','lastname'=>'Aliaga Aliaga','email'=>'caliaga@gmail.com','password'=>'12345678'],
             ['name'=>'Milagros','lastname'=>'Poquioma Yalta','email'=>'mpoquioma@gmail.com','password'=>'12345678'],
             ['name'=>'Hortencia','lastname'=>'Santacruz Burga','email'=>'hsantacruz@gmail.com','password'=>'12345678'],
-            ['name'=>'Litman','lastname'=>'Umpiri Loja','email'=>'lumpiri@gmail.com','password'=>'12345678'],
             ['name'=>'Keyla','lastname'=>'Tafur Castro.','email'=>'ktafur@gmail.com','password'=>'12345678'],
             ['name'=>'Carlos','lastname'=>'Valencia Pizarro','email'=>'cvalencia@gmail.com','password'=>'12345678'],
             ['name'=>'Janeth','lastname'=>'Sivirichi Galvez','email'=>'jsivirichi@gmail.com','password'=>'12345678'],
             ['name'=>'Irma','lastname'=>'Vásquez Ramírez','email'=>'ivasquez@gmail.com','password'=>'12345678'],
             ['name'=>'Luz','lastname'=>'Aguilar Guevara','email'=>'laguilar@gmail.com','password'=>'12345678'],
-            ['name'=>'Manuel','lastname'=>'Quispe Narváez','email'=>'mquispe@gmail.com','password'=>'12345678'],
             ['name'=>'Alejandrina','lastname'=>'Garcia Montenegro','email'=>'agarcia@gmail.com','password'=>'12345678'],
             ['name'=>'Livi','lastname'=>'Castro Chavez','email'=>'lcastro@gmail.com','password'=>'12345678'],
             ['name'=>'Carla','lastname'=>'Rodas Paredes','email'=>'crodas@gmail.com','password'=>'12345678'],
@@ -41,7 +41,13 @@ class Licenciados extends Seeder
         ];
         foreach ($datos as $key => $dato) {
             # code...
-            User::create($dato);
+            $user = User::create($dato);
+            if ($key == 0){
+                $user->assignRole(['Administrador','Licenciado']);
+            }
+            if ($key == 1){
+                $user->assignRole(['Administrador','Licenciado']);
+            }
         }
     }
 }

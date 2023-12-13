@@ -296,36 +296,44 @@ return [
             'topnav_right' => true,
         ],
         //menus
-        ['header' => 'ADMINISTRADOR'],
+        [
+            'header' => 'ADMINISTRADOR',
+            'can'=>'administrador.licenciados.index'
+        ],
         [
             'text'=>'Usuarios',
             'icon'=>'fas fa-user-nurse',
             'icon_color'=>'danger',
-            'url'=>'#'
+            'route'=>'administrador.licenciados.index',
+            'can'=>'administrador.licenciados.index'
         ],
         [
             'text'=>'Medicamentos',
             'icon'=>'fas fa-capsules',
             'icon_color'=>'warning',
-            'route'=>'administrador.medicamentos.index'
+            'route'=>'administrador.medicamentos.index',
+            'can'=>'administrador.medicamentos.index'
         ],
         [
             'text'=>'Unidades',
             'icon'=>'fas fa-pencil-ruler',
             'icon_color'=>'warning',
-            'route'=>'administrador.unidades.index'
+            'route'=>'administrador.unidades.index',
+            'can'=>'administrador.unidades.index'
         ],
         [
             'text'=>'Servicios',
             'icon'=>'fas fa-hand-holding-medical',
             'icon_color'=>'warning',
-            'route'=>'administrador.servicios.index'
+            'route'=>'administrador.servicios.index',
+            'can'=>'administrador.servicios.index'
         ],
         [
             'text'=>'Dietas',
             'icon'=>'fas fa-utensils',
             'icon_color'=>'warning',
             'route'=>'administrador.dietas.index',
+            'can'=>'administrador.dietas.index'
         ],
         ['header' => 'LICENCIADOS'],
         [

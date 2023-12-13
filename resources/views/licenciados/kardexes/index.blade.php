@@ -23,7 +23,7 @@
                                 todos los detalles relacionados a esta</p>
                         </x-slot>
                     </x-Modal>
-                    <a class="btn btn-warning" href="{{ route('kardex.editar',$kardex->id) }}">
+                    <a class="btn btn-warning mt-1" href="{{ route('kardex.editar',$kardex->id) }}">
                         <i class="fas fa-user-edit"></i>
                     </a>
                     #{{ ceros($kardex->numero) }}  {{ Str::upper($kardex->paciente->apellidoPaterno) }} 

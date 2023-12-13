@@ -18,6 +18,8 @@ use App\Models\Unidade;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -134,6 +136,42 @@ class DatabaseSeeder extends Seeder
         $examen3 = Examene::create([
             'nombre'=>'Analisis de Orina'
         ]);
+        //ROLES
+        $roleAdministrador = Role::create([
+            'name'=>'Administrador'
+        ]);
+        $roleLicenciado = Role::create([
+            'name'=>'Licenciado'
+        ]);
+
+        //PERMISOS
+        $permisos = [
+            'administrador.medicamentos.index',
+            'administrador.medicamento.destroy',
+            'administrador.unidades.index',
+            'administrador.unidades.destroy',
+            'administrador.servicios.index',
+            'administrador.servicios.destroy',
+            'administrador.medicos.index',
+            'administrador.medicos.destroy',
+            'administrador.dietas.index',
+            'administrador.dietas.destroy',
+            'administrador.licenciados.index',
+            'administrador.licenciados.destroy',
+            'administrador.pacientes.index',
+            'administrador.pacientes.destroy'
+        ];
+        
+        foreach ($permisos as $key => $permiso) {
+            # code...
+            Permission::create([
+                'name'=>$permiso,
+            ]);
+        }
+        
+        $roleAdministrador->syncPermissions([$permisos]);
+
+
         $this->call(ProcedimientoSeed::class);
         $this->call(ViaSeed::class);
         $this->call(DietaSeed::class);
@@ -153,5 +191,10 @@ class DatabaseSeeder extends Seeder
             'user_id'=>$user1->id,
             'fecha'=>Carbon::now()
         ]);
+
+
+
+        $user1->assignRole(['Administrador','Licenciado']);
+
     }
 }
