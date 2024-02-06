@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('ambientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            $table->string('ambiente');
+            $table->string('cama');
+            $table->unsignedBigInteger('servicio_id');
             $table->string('observacion')->nullable();
+            $table->unique(['ambiente','cama','servicio_id']);
+            $table->foreign('servicio_id')->on('servicios')->references('id');
             $table->timestamps();
         });
     }

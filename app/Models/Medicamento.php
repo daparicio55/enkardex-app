@@ -16,4 +16,7 @@ class Medicamento extends Model
         'restriccion',
         'indicaciones'
     ];
+    public function indicationes(){
+        return $this->hasMany(Indicacione::class);
+    }
 }

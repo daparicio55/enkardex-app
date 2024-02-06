@@ -24,4 +24,7 @@ class Dia extends Model
     public function dexamenes(){
         return $this->hasMany(DiaExamene::class,'dia_id','id');
     }
+    public function descalas(){
+        return $this->hasMany(DiaEscala::class);
+    }
 }

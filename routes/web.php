@@ -6,9 +6,12 @@ use App\Http\Controllers\Administrador\MedicoController;
 use App\Http\Controllers\Administrador\ServicioController;
 use App\Http\Controllers\Administrador\UnidadeController;
 use App\Http\Controllers\Administrador\DietaController as AdministradorDietaController;
+use App\Http\Controllers\Administrador\EscalaController;
 use App\Http\Controllers\Administrador\LicenciadoController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EauxiliareController;
+use App\Http\Controllers\EgrupoController;
+use App\Http\Controllers\EgvaloreController;
 use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndicacioneController;
@@ -60,6 +63,13 @@ Route::delete('/administrador/dietas/{id}',[AdministradorDietaController::class,
 Route::get('/administrador/licenciados',[LicenciadoController::class,'index'])->name('administrador.licenciados.index');
 Route::delete('/administrador/licenciados',[LicenciadoController::class,'delete'])->name('administrador.licenciados.destroy');
 
+Route::get('/administrador/escalas',[EscalaController::class,'index'])->name('administrador.escalas.index');
+Route::delete('/administrador/escalas/{id}',[EscalaController::class,'delete'])->name('administrador.escalas.destroy');
+
+Route::delete('/administrador/egrupos/{id}',[EgrupoController::class,'delete'])->name('administrador.egrupos.destroy');
+
+Route::delete('/administrador/egvalores/{id}',[EgvaloreController::class,'delete'])->name('administrador.egvalores.destroy');
+
 Route::get('/licenciados/pacientes',[PacienteController::class,'index'])->name('licenciados.pacientes.index');
 Route::delete('/licenciados/pacientes/{id}',[PacienteController::class,'delete'])->name('licenciados.pacientes.destroy');
 
@@ -105,3 +115,5 @@ Route::get('/',[HomeController::class,'index'])->name('index');
 //RUTAS DE APIS
 Route::get('/apis/getdni/{dni}',[ApiController::class,'getdni'])
 ->name('apis.getdni');
+
+//RUTAS PARA PRUEBAS

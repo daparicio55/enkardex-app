@@ -58,14 +58,104 @@
                                             </th>
                                         </tr>
                                         <tr>
+                                            <th>Escalas</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <form wire:submit="escalacreate()">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <x-entrada>
+                                                                <select class="form-control" wire:model="escala_id" required>
+                                                                    <option value="" disabled selected>Escalas...</option>
+                                                                    @foreach ($escalas as $escala)
+                                                                        <option value="{{ $escala->id }}">{{ $escala->nombre }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                <x-slot name="end">
+                                                                    <button type="submit" class="btn btn-warning">
+                                                                        <i class="far fa-plus-square"></i>
+                                                                    </button>
+                                                                </x-slot>
+                                                            </x-entrada>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <div class="mt-1 text-center">
+                                                    @foreach ($dia->descalas as $descala)
+                                                        <span class="d-block">
+                                                            {{ $descala->escala->nombre }}
+                                                        </span>
+                                                        @php
+                                                            $total = 0;
+                                                        @endphp
+                                                        @foreach ($descala->detalles as $detalle)
+                                                            @php
+                                                                $total = $total + $detalle->valor->valor;
+                                                            @endphp
+                                                        @endforeach
+                                                        <button class="btn btn-danger btn-sm">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button> Valor: {{ $total }}
+                                                    @endforeach
+                                                </div>
+
+                                                @if ($escala_form->frmcreate)
+                                                <form wire:submit="escalastore()">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="card">
+                                                                <div class="card-header bg-warning">
+                                                                    <i class="fas fa-ruler-vertical"></i> Escala - {{ $escala_form->escala->nombre }}
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        @foreach ($escala_form->escala->egrupos as $key => $egrupo)
+                                                                        <div class="col-sm-12 col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="">
+                                                                                    {{ $egrupo->nombre }}
+                                                                                </label>
+                                                                                @foreach ($egrupo->egvalores as $egvalore)
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" wire:model="escala_form.grupo{{ $key }}" value="{{ $egvalore->id }}">
+                                                                                    <label class="form-check-label">
+                                                                                        {{ $egvalore->nombre }}
+                                                                                    </label>
+                                                                                </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-footer">
+                                                                    <button class="btn btn-danger">
+                                                                        Cerrar
+                                                                    </button>
+                                                                    <button type="submit" class="btn btn-info">
+                                                                        Guardar
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th class="pl-0 pb-0">Procedimientos</th>
                                             <th class=pb-0></th>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <form wire:submit="diaprocedimientostore()">
+                                                <form wire:submit="diaprocedimientostore()">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
                                                             <x-entrada>
                                                                 <select id="selectprocedimientos" class="form-control" 
                                                                 wire:model="diaprocedimiento_create.procedimiento_id">
@@ -80,9 +170,19 @@
                                                                     </button>
                                                                 </x-slot>
                                                             </x-entrada>
-                                                        </form>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <x-entrada>
+                                                                <input type="text" class="form-control" placeholder="observacion.." wire:model="diaprocedimiento_create.observacion" required>
+                                                                <x-slot name="end">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-list"></i>
+                                                                    </span>
+                                                                </x-slot>
+                                                            </x-entrada>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </form>  
                                             </td>
                                             <td class="d-flex justify-content-around pt-1 pb-0">
                                                 @foreach ($dia->dprocedmientos as $dprocedmiento)
@@ -95,6 +195,7 @@
                                                             <i class="fas fa-hourglass-half"></i>
                                                         @endif
                                                     </span>
+                                                    <span class="text-success d-block">{{ $dprocedmiento->observacion }}</span>
                                                     <button class="btn btn-info btn-sm"
                                                     wire:click="donediaprocedimientostore({{ $dprocedmiento->id }})">
                                                         <i class="fas fa-check"></i>

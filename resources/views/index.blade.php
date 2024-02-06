@@ -30,6 +30,32 @@
             description="hojas de tratamientos terapeuticos registratos en el sistema informático"/>
         </a>
     </div>
+    <div class="col-sm-12 col-md-12 mt-3">
+        <canvas id="medicamento"></canvas>
+    </div>
+    <div class="col-sm-12 col-md-12 mt-3">
+        @php
+            $header;
+            $datos;
+        @endphp
+        @foreach ($medicamentos as $medicamento)
+            @foreach ($medicamento->indicationes as $indicatione)
+                @php
+                    $datos[] = $indicatione->dia_indicaciones()->where('tipo','aplicado')->count();
+                @endphp
+            @endforeach
+            @php
+                $header[] = Str::limit($medicamento->denominacion, 15);
+            @endphp
+        @endforeach
+        @if (isset($header) || isset($datos))
+            @php
+                $hmedicamentos = json_encode($header);
+                $dmedicamentos = json_encode($datos);
+            @endphp
+        @endif
+            
+    </div>
 </div>
 
 @stop
@@ -52,7 +78,31 @@
             iBoxPaciente.update(data);
         };
         setInterval(updateIBox, 5000);
-    })
-
+    });   
 </script>
+
+@if (isset($header) || isset($datos))
+    <script>
+            let ctx = document.getElementById('medicamento').getContext("2d");
+            let myChart = new Chart(ctx,{
+                type: "bar",
+                data: {
+                    labels: <?= $hmedicamentos ?>,
+                    datasets: [{
+                        label: 'Datos',
+                        data: <?= $dmedicamentos ?>,
+                    }]
+                },
+                options:{
+                    scales:{
+                        yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });        
+    </script>
+@endif
 @endpush

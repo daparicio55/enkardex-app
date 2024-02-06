@@ -335,6 +335,12 @@ return [
             'route'=>'administrador.dietas.index',
             'can'=>'administrador.dietas.index'
         ],
+        [
+            'text'=>'Escalas',
+            'icon'=>'fas fa-file-alt',
+            'icon_color'=>'info',
+            'route'=>'administrador.escalas.index',
+        ],
         ['header' => 'LICENCIADOS'],
         [
             'text'=>'Médicos',
@@ -561,7 +567,7 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

@@ -17,7 +17,7 @@
 {{-- SERVICIO Y AREA --}}
 <div class="col-sm-12 col-md-8">
     <x-entrada>
-        <select class="form-control" wire:model="servicio_id" required>
+        <select class="form-control" wire:model="servicio_id" wire:change="servicio_change()" required>
             <option value="" disabled selected>Seleccionar un servicio</option>
             @foreach ($servicios as $servicio)
                 <option wire:key="servicio-{{ $servicio->id }}" value="{{ $servicio->id }}">{{ $servicio->nombre }}</option>
@@ -35,7 +35,7 @@
         <select class="form-control" wire:model="ambiente_id" required>
             <option value="" disabled selected>Ambiente</option>
             @foreach ($ambientes as $ambiente)
-                <option wire:key="ambiente-{{ $ambiente->id }}" value="{{ $ambiente->id }}">{{ $ambiente->nombre }}</option>
+                <option wire:key="ambiente-{{ $ambiente->id }}" value="{{ $ambiente->id }}">{{ $ambiente->ambiente }} - {{ $ambiente->cama }}</option>
             @endforeach
         </select>
         <x-slot name="end">

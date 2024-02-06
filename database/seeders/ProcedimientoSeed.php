@@ -70,7 +70,7 @@ class ProcedimientoSeed extends Seeder
             ['nombre'=>'TOMA DE HEMOGLUCOTEST ADULTO'],
             ['nombre'=>'TOMA DE HEMOGLUCOTEST RN'],
             ['nombre'=>'CUIDADO EN PACIENTE POSTRADOS'],
-            ['nombre'=>'CUIDADOS EN PREVENCIÓN DE INFECCIONES ASOCIADAS AL CATETER( PERIFERICO, NASOGASTRICO, VENOSO CENTRAL,URINARIO)'],
+            ['nombre'=>'CUIDADOS EN PREVENCIÓN DE INFECCIONES ASOCIADAS AL CATETER'],
             ['nombre'=>'IRRIGACIÓN  VESICAL CONTINUA'],
             ['nombre'=>'CUIDADO DE ENFERMERIA EN OSTOMIAS'],
             ['nombre'=>'CUIDADOS EN PREVENCIÓN DE CAIDAS'],

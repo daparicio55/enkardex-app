@@ -12,6 +12,7 @@ class DiaProcedimiento extends Model
         'dia_id',
         'fechahora',
         'user_id',
+        'observacion'
     ];
     use HasFactory;
     public function procedimiento(){

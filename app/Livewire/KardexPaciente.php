@@ -13,6 +13,7 @@ use App\Livewire\Forms\DiaProcedimientoCreateForm;
 use App\Livewire\Forms\DiaProcedimientoDeleteForm;
 use App\Livewire\Forms\DoneDiaExameneCreateForm;
 use App\Livewire\Forms\DoneDiaProcedimientoCreateForm;
+use App\Livewire\Forms\Escalas\Escalaform;
 use App\Livewire\Forms\MedicamentoCreateForm;
 use App\Livewire\Forms\MedicamentoDeleteForm;
 use App\Livewire\Forms\PacienteCreateForm;
@@ -20,6 +21,7 @@ use App\Models\Ambiente;
 use App\Models\Dia;
 use App\Models\Dieta;
 use App\Models\Doctore;
+use App\Models\Escala;
 use App\Models\Examene;
 use App\Models\Kardex;
 use App\Models\Medicamento;
@@ -29,6 +31,7 @@ use App\Models\Via;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Http\Request;
 
 class KardexPaciente extends Component
 {
@@ -47,6 +50,8 @@ class KardexPaciente extends Component
     public $examenes;
     public $procedimientos;
     public $procedimiento_id;
+    public $escalas;
+    public $escala_id = "";
 
     public $fecha;
     public $hora;
@@ -72,7 +77,16 @@ class KardexPaciente extends Component
     public DiaProcedimientoCreateForm $diaprocedimiento_create;
     public DiaProcedimientoDeleteForm $diaprocedimiento_delete;
     public DoneDiaProcedimientoCreateForm $donediaprocedimiento_create;
+
+    public Escalaform $escala_form;
+    
     ##DIA EXAMENE
+    public function escalacreate(){
+        $this->escala_form->crear($this->escala_id);
+    }
+    public function escalastore(){
+        $this->escala_form->guardar($this->dia_id,$this->escala_id);
+    }
     public function donediaprocedimientostore($id){
         $this->donediaprocedimiento_create->store($id);
     }
@@ -204,8 +218,7 @@ class KardexPaciente extends Component
         ->get();
         $this->servicios = Servicio::orderBy('nombre','asc')
         ->get();
-        $this->ambientes = Ambiente::orderBy('nombre','asc')
-        ->get();
+        
         $this->medicamentos = Medicamento::orderBy('denominacion','asc')
         ->get();
         $this->vias = Via::orderBy('nombre','asc')
@@ -216,6 +229,9 @@ class KardexPaciente extends Component
         ->get();
         $this->procedimientos = Procedimiento::orderBy('nombre','asc')
         ->get();
+        $this->escalas = Escala::orderBy('nombre','asc')
+        ->get();
+
         if($id != 0){
             $this->kardex_id = $id;
             $this->kardex = Kardex::find($this->kardex_id);
@@ -234,6 +250,16 @@ class KardexPaciente extends Component
             $this->doctore_id = $this->kardex->doctore_id;
             $this->diagnostico = $this->kardex->diagnostico;
         }
+        $this->ambientes = Ambiente::orderBy('ambiente','asc')
+        ->orderBy('cama','asc')
+        ->where('servicio_id','=',$this->servicio_id)
+        ->get();
+    }
+    public function servicio_change(){
+        $this->ambientes = Ambiente::orderBy('ambiente','asc')
+        ->orderBy('cama','asc')
+        ->where('servicio_id','=',$this->servicio_id)
+        ->get();
     }
     public function render()
     {

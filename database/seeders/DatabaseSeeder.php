@@ -28,33 +28,194 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $ambiente1 = Ambiente::create([
-            'nombre'=>'A1'
+        $servicio1 = Servicio::create([
+            'nombre'=>'Ginecologia'
         ]);
         $ambiente2 = Ambiente::create([
-            'nombre'=>'A2'
+            'ambiente'=>'Ambiente 1',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio1->id
         ]);
-        $ambiente3 = Ambiente::create([
-            'nombre'=>'A3'
+        Ambiente::create([
+            'ambiente'=>'Ambiente 1',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio1->id
         ]);
-        $ambiente4 = Ambiente::create([
-            'nombre'=>'A4'
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio1->id
         ]);
-        $servicio1 = Servicio::create([
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio1->id
+        ]);
+        
+        $servicio2 = Servicio::create([
+            'nombre'=>'Ob. Emergencia Adulto'
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 1',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 1',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 1',
+            'cama'=>'Cama 3',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 1',
+            'cama'=>'Cama 4',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 3',
+            'servicio_id'=>$servicio2->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 4',
+            'servicio_id'=>$servicio2->id
+        ]);
+        ////////////////////////////////////////
+        $servicio3 = Servicio::create([
+            'nombre'=>'Ob. Emergencia Pediatrico.'
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio3->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio3->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 3',
+            'servicio_id'=>$servicio3->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 2',
+            'cama'=>'Cama 4',
+            'servicio_id'=>$servicio3->id
+        ]);
+        /////////////////////////////////////////////
+        $servicio4 = Servicio::create([
+            'nombre'=>'Pedriatria'
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 3',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio4->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 3',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio4->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 4',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio4->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 4',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio4->id
+        ]);
+        //////////////////////////////////////////////////
+        $servicio5 = Servicio::create([
             'nombre'=>'Cirugia'
         ]);
-        $servicio2 = Servicio::create([
-            'nombre'=>'Recuperación'
+        Ambiente::create([
+            'ambiente'=>'Ambiente 5',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio5->id
         ]);
-        $servicio3 = Servicio::create([
-            'nombre'=>'Tratamiento'
+        Ambiente::create([
+            'ambiente'=>'Ambiente 5',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio5->id
         ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 6',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio5->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 6',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio5->id
+        ]);
+        /////////////////////////////////////////////////
+        $servicio6 = Servicio::create([
+            'nombre'=>'Med. Interna'
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 7',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio6->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 7',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio6->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 8',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio6->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 8',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio6->id
+        ]);
+        ///////////////////////////////////////////
+        $servicio7 = Servicio::create([
+            'nombre'=>'Cuidados Criticos'
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 9',
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio7->id
+        ]);
+        Ambiente::create([
+            'ambiente'=>'Ambiente 9',
+            'cama'=>'Cama 2',
+            'servicio_id'=>$servicio7->id
+        ]);
+        //////////////////////////////////////////
+        $servicio8 = Servicio::create([
+            'nombre'=>'Trauma Shock'
+        ]);
+        Ambiente::create([
+            'ambiente'=>"Ambiente 1",
+            'cama'=>'Cama 1',
+            'servicio_id'=>$servicio8->id
+        ]); 
+        //////////////////////////////////////////
         $doctore1 = Doctore::create([
             'nombres'=>'Juan Carlos',
             'apellidos'=>'Perez Rodriguez'
@@ -82,12 +243,12 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('1234'),
         ]);
         //UNIDADES
-        $unidade1 = Unidade::create([
+        /* $unidade1 = Unidade::create([
             'nombre'=>'mg.'
         ]);
         $unidade2 = Unidade::create([
             'nombre'=>'g.'
-        ]);
+        ]); */
         //pacientes
         $paciente1 = Paciente::create([
             'nombres'=>'Lionel',
@@ -177,7 +338,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DietaSeed::class);
         $this->call(MedicamentoSeed::class);
         $this->call(Licenciados::class);
-
+        $this->call(Unidades::class);
+        $this->call(Escalas::class);
         //creamos alergias
         Alergia::create([
             'paciente_id'=>$paciente1->id,

@@ -21,4 +21,7 @@ class Indicacione extends Model
     public function via(){
         return $this->belongsTo(Via::class);
     }
+    public function dia_indicaciones(){
+        return $this->hasMany(DiaIndicacione::class);
+    }
 }
